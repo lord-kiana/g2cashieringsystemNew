@@ -10,6 +10,9 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
+// Check if the user is an admin (replace with your actual admin check)
+$is_admin = isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'; // Example condition
+
 // Handle adding a product to the cart
 if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
@@ -49,8 +52,18 @@ if (isset($_POST['add_to_cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cashiering Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script>
+        function checkAdmin() {
+            // Check if the user is an admin )
+            const isAdmin = <?= json_encode($is_admin); ?>; // Pass PHP variable to JavaScript
+            if (!isAdmin) {
+                alert('Unauthorized Access, Please use an admin account.');
+                return false; // Prevent navigation
+            }
+            return true; // Allow navigation
+        }
+    </script>
 </head>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -68,7 +81,7 @@ if (isset($_POST['add_to_cart'])) {
 
         <!-- Manage Inventory Button -->
         <div class="text-end mb-3">
-            <a href="manage-inventory.php" class="btn btn-success">
+            <a href="manage-inventory.php" class="btn btn-success" onclick="return checkAdmin()">
                 <i class="bi bi-gear-fill"></i> Manage Inventory
             </a>
         </div>
