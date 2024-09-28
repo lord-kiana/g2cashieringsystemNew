@@ -48,18 +48,26 @@ if (isset($_POST['add_to_cart'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cashiering Dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
-
+    <style>
+        body {
+            padding-top: 60px; /* adjust this value to match the height of your navigation bar */
+        }
+    </style>
 </head>
 
 <body>
+
     <?php include 'navbar.php'; ?> <!-- Include the navbar -->
 
-    <div class="container mt-5 pt-5">
-        <h1 class="display-4 text-center">Cashiering Dashboard</h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-3 text-center">Dashboard</h1>
+            </div>
 
         <h2>Select Products</h2>
         <div class="row">

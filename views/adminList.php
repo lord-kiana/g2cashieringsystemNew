@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+// Check if the user is logged in and is an admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // If the user is not an admin, show an alert and then redirect
+    echo "<script>alert('Access denied: Please use an admin account!');</script>";
+    echo "<script>window.location.href = 'dashboard.php';</script>"; // Redirect to dashboard
+    exit; // Stop further execution of the script
+}
+
+
 // Start session and require login
 require_once('../actions/require_login.php');
 
@@ -29,29 +40,23 @@ if (isset($_GET['message'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px; /* adjust this value to match the height of your navigation bar */
+        }
+    </style>
 </head>
 <body>
 
 <?php include 'navbar.php'; ?> <!-- Include the navbar -->
 
-<div class="container mt-5">
-    <h1 class="text-center">Admin User List</h1>
-
-    <div class="row">
-            <div class="col-md-12">
-                <!-- Button Group: Back to Dashboard -->
-                <div class="mb-3 text-start">
-                    <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
-                </div>
-            </div>
-        </div>   
+<div class="container mt-5 pt-5">
+<h1 class="display-4 text-center">Admin User List</h1>
 
     <!-- Message Display -->
     <?php if ($message): ?>
         <div class="alert alert-success"><?= $message; ?></div>
     <?php endif; ?>
-
-
 
     <!-- User Table in a Scrollable Container -->
     <div style="overflow-x: auto;">

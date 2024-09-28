@@ -41,10 +41,12 @@ if (!empty($daily_sales_report)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Report</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
+            padding-top: 60px; /* adjust this value to match the height of your navigation bar */
         }
         table {
             border-collapse: collapse;
@@ -62,19 +64,12 @@ if (!empty($daily_sales_report)) {
 </head>
 <body>
 
+    <?php include 'navbar.php'; ?> <!-- Include the navbar -->
+
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <h1>Sales Report</h1>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <!-- Button Group: Back to Dashboard -->
-                <div class="mb-3 text-start">
-                    <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
-                </div>
+                <h1 class="display-4 text-center">Sales Report</h1>
             </div>
         </div>
 
@@ -153,5 +148,7 @@ if (!empty($daily_sales_report)) {
             </div>
         </div>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
