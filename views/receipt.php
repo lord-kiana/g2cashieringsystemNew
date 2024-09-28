@@ -30,6 +30,7 @@ unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receipt</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* Receipt styles */
         body { font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px; }
@@ -46,6 +47,8 @@ unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $
         <!-- Button Group: Back to Dashboard -->
         <div class="mb-3 text-start">
             <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+
         </div>
 
 </head>

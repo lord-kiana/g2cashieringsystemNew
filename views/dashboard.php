@@ -108,9 +108,12 @@ if (isset($_POST['add_to_cart'])) {
     <div class="container mt-5 pt-5">
         <h1 class="display-4 text-center">Cashiering Dashboard</h1>
 
-    <!-- Main Dashboard Content -->
-    <div class="container" id="main-container">
-        <h1 class="display-4 text-center">Cashiering Dashboard</h1>
+        <!-- Manage Inventory Button -->
+        <div class="text-end mb-3">
+            <a href="manage-inventory.php" class="btn btn-success">
+                <i class="bi bi-gear-fill"></i> Manage Inventory
+            </a>
+        </div>
 
         <!-- Select Products and Add to Cart -->
         <h2>Select Products</h2>
@@ -131,8 +134,10 @@ if (isset($_POST['add_to_cart'])) {
                             </button>
 
                             <!-- Cart Quantity Indicator -->
-                            <?php if (isset($_SESSION['cart'][$p['id']])): 
-                                $cart_quantity = $_SESSION['cart'][$p['id']]['quantity']; ?>
+                            <?php 
+                            if (isset($_SESSION['cart'][$p['id']])): 
+                                $cart_quantity = $_SESSION['cart'][$p['id']]['quantity']; 
+                            ?>
                                 <span class="badge bg-secondary ms-2">In Cart: <?= $cart_quantity; ?></span>
                             <?php endif; ?>
                         </form>
