@@ -13,7 +13,9 @@ if (!isset($_SESSION['cart'])) {
 // Handle adding a product to the cart
 if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
-    $quantity = $_POST['quantity'];
+    
+    // Set the quantity to 1 by default when adding a product
+    $quantity = 1;
 
     // Fetch product details
     $product_details = $product->displaySpecificProduct($product_id);
@@ -23,11 +25,15 @@ if (isset($_POST['add_to_cart'])) {
     $total_requested_quantity = $current_cart_quantity + $quantity;
 
     if ($product_details && $total_requested_quantity <= $product_details['quantity']) {
-        // Add to cart with the selected quantity
+        // Add to cart with the default quantity of 1
         if (!isset($_SESSION['cart'][$product_id])) {
-            $_SESSION['cart'][$product_id] = ['name' => $product_details['product_name'], 'price' => $product_details['price'], 'quantity' => $quantity];
+            $_SESSION['cart'][$product_id] = [
+                'name' => $product_details['product_name'], 
+                'price' => $product_details['price'], 
+                'quantity' => $quantity
+            ];
         } else {
-            // Update quantity if product is already in the cart
+            // Update quantity if the product is already in the cart
             $_SESSION['cart'][$product_id]['quantity'] += $quantity;
         }
     } else {
@@ -45,27 +51,24 @@ if (isset($_POST['add_to_cart'])) {
     <title>Cashiering Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
-    <script>
-      
-    </script>
 </head>
 
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">AB Meat Shop</a>
-        <div class="ms-auto">
-            <a href="../actions/logout.php" class="btn btn-danger">Logout</a>
-        </div>
+            <div class="ms-auto">
+                <a href="../actions/logout.php" class="btn btn-danger">Logout</a>
+            </div>
         </div>
     </nav>
 
-<body>
     <div class="container mt-5">
         <h1 class="display-4 text-center">Cashiering Dashboard</h1>
 
         <!-- Manage Inventory Button -->
         <div class="text-end mb-3">
-            <a href="manage-inventory.php" class="btn btn-success" onclick="return checkAdmin()">
+            <a href="manage-inventory.php" class="btn btn-success">
                 <i class="bi bi-gear-fill"></i> Manage Inventory
             </a>
         </div>
