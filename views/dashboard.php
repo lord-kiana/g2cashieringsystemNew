@@ -49,89 +49,64 @@ if (isset($_POST['add_to_cart'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cashiering Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
-        /* Sidebar styling for left-side placement */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            height: 100%;
-            width: 250px;
-            background-color: #333;
-            color: #fff;
-            padding-top: 20px;
-            transition: left 0.3s ease;
+        /* Custom styles for the brand name */
+        .navbar-brand {
+            font-size: 2rem; /* Makes the brand name larger */
+            color: #f8f9fa !important; /* Light color (using Bootstrap's light color) */
         }
-
-        /* When sidebar is shown */
-        .sidebar.show {
-            left: 0;
-        }
-
-        .navbar-dark .navbar-toggler {
-            position: relative;
-            z-index: 1050; /* Ensure the button stays above the collapse */
-        }
-
-        .navbar-nav {
-            flex-direction: column;
-            padding-left: 0;
-            padding-top: 20px;
-        }
-
-        .nav-link {
-            color: #fff;
-            padding: 10px;
-        }
-
-        .nav-link:hover {
-            background-color: #444;
-        }
-
-        /* Positioning Logout button at the bottom */
-        .mt-auto {
-            margin-top: auto;
-        }
-
-        /* Ensuring the main container stays in place */
-        .container {
-            margin-top: 50px;
-            margin-left: 500px;
-            transition: margin-left 0.3s ease;
-        }
-
     </style>
 </head>
 
 <body>
-    <!-- Navbar at the top that toggles the sidebar -->
-    <nav class="navbar navbar-dark bg-dark">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" onclick="toggleSidebar()">
+            <a class="navbar-brand" href="#">AB Meat Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Menu Icon for Logout -->
+                    <li class="nav-item">
+                     <!-- Menu Icon for Logout -->
+<li class="nav-item">
+    <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLogout" aria-controls="offcanvasLogout">
+        <i class="bi bi-list"></i> 
+    </button>
+</li>
+
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <!-- Sidebar that opens on the left -->
-    <div class="sidebar" id="sidebar">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="manage-inventory.php">
-                    <i class="bi bi-gear-fill"></i> Manage Inventory
-                </a>
-            </li>
-        </ul>
-        <ul class="navbar-nav mt-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="../actions/logout.php">
-                    <i class="bi bi-box-arrow-right"></i> Logout
-                </a>
-            </li>
-        </ul>
+<!-- Offcanvas Logout Menu -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLogout" aria-labelledby="offcanvasLogoutLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLogoutLabel">Options</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
+    <div class="offcanvas-body">
+        <p>Are you sure you want to logout?</p>
+        <div class="d-grid gap-2">
+        <a href="manage-inventory.php" class="btn btn-success">
+                <i class="bi bi-gear-fill"></i> Manage Inventory
+            </a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+            <a href="../actions/logout.php" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Add margin-top to avoid content overlap with fixed navbar -->
+    <div class="container mt-5 pt-5">
+        <h1 class="display-4 text-center">Cashiering Dashboard</h1>
 
     <!-- Main Dashboard Content -->
     <div class="container" id="main-container">
@@ -175,17 +150,6 @@ if (isset($_POST['add_to_cart'])) {
         </div>
     </div>
 
-    <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById('sidebar');
-            var mainContainer = document.getElementById('main-container');
-
-            // Toggle the sidebar visibility
-            sidebar.classList.toggle('show');
-            mainContainer.classList.toggle('shifted');
-        }
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
