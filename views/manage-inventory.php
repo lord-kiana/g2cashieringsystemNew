@@ -3,10 +3,12 @@ session_start();
 
 // Check if the user is logged in and is an admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    // If the user is not an admin, redirect them or show an error
-    header("Location: dashboard.php"); // Redirect to dashboard
+    // If the user is not an admin, show an alert and then redirect
+    echo "<script>alert('Access denied: Please use an admin account!');</script>";
+    echo "<script>window.location.href = 'dashboard.php';</script>"; // Redirect to dashboard
     exit; // Stop further execution of the script
 }
+
 
 // If the user is an admin, continue with inventory management code
 require_once('../actions/require_login.php');
@@ -21,9 +23,10 @@ $products = $product->displayProducts();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Inventory</title>
-    <!-- Bootstrap CSS -->
+    <title>Cashiering Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
 </head>
 <body>
     <div class="container mt-5">

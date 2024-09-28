@@ -10,41 +10,33 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Check if the user is an admin (replace with your actual admin check)
-$is_admin = isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'; // Example condition
-
 // Handle adding a product to the cart
 if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
+    $quantity = $_POST['quantity'];
 
     // Fetch product details
     $product_details = $product->displaySpecificProduct($product_id);
-
-    // Check if the product exists and has available stock
-    if ($product_details) {
-        // Check if the product is already in the cart
-        if (isset($_SESSION['cart'][$product_id])) {
-            // Increment the quantity in the cart
-            if ($_SESSION['cart'][$product_id]['quantity'] < $product_details['quantity']) {
-                $_SESSION['cart'][$product_id]['quantity']++;
-            } else {
-                echo "<p class='text-danger'>Not enough stock available for this product.</p>";
-            }
-        } else {
-            // Add the product to the cart with quantity 1
-            $_SESSION['cart'][$product_id] = [
-                'name' => $product_details['product_name'],
-                'price' => $product_details['price'],
-                'quantity' => 1
-            ];
-        }
-    }
     
-    // Redirect to avoid resubmission on page refresh
-    header("Location: dashboard.php");
-    exit();
+    // Check if the requested quantity exceeds available stock
+    $current_cart_quantity = isset($_SESSION['cart'][$product_id]) ? $_SESSION['cart'][$product_id]['quantity'] : 0;
+    $total_requested_quantity = $current_cart_quantity + $quantity;
+
+    if ($product_details && $total_requested_quantity <= $product_details['quantity']) {
+        // Add to cart with the selected quantity
+        if (!isset($_SESSION['cart'][$product_id])) {
+            $_SESSION['cart'][$product_id] = ['name' => $product_details['product_name'], 'price' => $product_details['price'], 'quantity' => $quantity];
+        } else {
+            // Update quantity if product is already in the cart
+            $_SESSION['cart'][$product_id]['quantity'] += $quantity;
+        }
+    } else {
+        // Display an error message if requested quantity exceeds stock
+        echo "<p class='text-danger'>Not enough stock available for this product.</p>";
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,15 +46,7 @@ if (isset($_POST['add_to_cart'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
     <script>
-        function checkAdmin() {
-            // Check if the user is an admin )
-            const isAdmin = <?= json_encode($is_admin); ?>; // Pass PHP variable to JavaScript
-            if (!isAdmin) {
-                alert('Unauthorized Access, Please use an admin account.');
-                return false; // Prevent navigation
-            }
-            return true; // Allow navigation
-        }
+      
     </script>
 </head>
 
