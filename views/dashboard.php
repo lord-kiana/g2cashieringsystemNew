@@ -13,30 +13,35 @@ if (!isset($_SESSION['cart'])) {
 // Handle adding a product to the cart
 if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
-    $quantity = $_POST['quantity'];
 
     // Fetch product details
     $product_details = $product->displaySpecificProduct($product_id);
-    
-    // Check if the requested quantity exceeds available stock
-    $current_cart_quantity = isset($_SESSION['cart'][$product_id]) ? $_SESSION['cart'][$product_id]['quantity'] : 0;
-    $total_requested_quantity = $current_cart_quantity + $quantity;
 
-    if ($product_details && $total_requested_quantity <= $product_details['quantity']) {
-        // Add to cart with the selected quantity
-        if (!isset($_SESSION['cart'][$product_id])) {
-            $_SESSION['cart'][$product_id] = ['name' => $product_details['product_name'], 'price' => $product_details['price'], 'quantity' => $quantity];
+    // Check if the product exists and has available stock
+    if ($product_details) {
+        // Check if the product is already in the cart
+        if (isset($_SESSION['cart'][$product_id])) {
+            // Increment the quantity in the cart
+            if ($_SESSION['cart'][$product_id]['quantity'] < $product_details['quantity']) {
+                $_SESSION['cart'][$product_id]['quantity']++;
+            } else {
+                echo "<p class='text-danger'>Not enough stock available for this product.</p>";
+            }
         } else {
-            // Update quantity if product is already in the cart
-            $_SESSION['cart'][$product_id]['quantity'] += $quantity;
+            // Add the product to the cart with quantity 1
+            $_SESSION['cart'][$product_id] = [
+                'name' => $product_details['product_name'],
+                'price' => $product_details['price'],
+                'quantity' => 1
+            ];
         }
-    } else {
-        // Display an error message if requested quantity exceeds stock
-        echo "<p class='text-danger'>Not enough stock available for this product.</p>";
     }
+    
+    // Redirect to avoid resubmission on page refresh
+    header("Location: dashboard.php");
+    exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,11 +49,13 @@ if (isset($_POST['add_to_cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cashiering Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">My Cashiering App</a>
+            <a class="navbar-brand" href="#">AB Meat Shop</a>
         <div class="ms-auto">
             <a href="../actions/logout.php" class="btn btn-danger">Logout</a>
         </div>
@@ -61,30 +68,48 @@ if (isset($_POST['add_to_cart'])) {
 
         <!-- Manage Inventory Button -->
         <div class="text-end mb-3">
-            <a href="manage-inventory.php" class="btn btn-success">Manage Inventory</a>
+            <a href="manage-inventory.php" class="btn btn-success">
+                <i class="bi bi-gear-fill"></i> Manage Inventory
+            </a>
         </div>
 
         <!-- Select Products and Add to Cart -->
         <h2>Select Products</h2>
-        <form action="dashboard.php" method="post" class="mb-3">
-            <div class="mb-3">
-                <label for="product_id" class="form-label">Product</label>
-                <select name="product_id" id="product_id" class="form-select" required>
-                    <?php foreach ($products as $p): ?>
-                        <option value="<?= $p['id']; ?>"><?= $p['product_name']; ?> (Stock: <?= $p['quantity']; ?>)</option>
-                    <?php endforeach; ?>
-                </select>
+        <div class="row">
+            <?php foreach ($products as $p): ?>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $p['product_name']; ?></h5>
+                        <p class="card-text">Price: $<?= $p['price']; ?></p>
+                        <p class="card-text">Stock: <?= $p['quantity']; ?></p>
+                    </div>
+                    <div class="card-footer text-end">
+                        <form action="dashboard.php" method="post">
+                            <input type="hidden" name="product_id" value="<?= $p['id']; ?>">
+                            <button type="submit" name="add_to_cart" class="btn btn-primary">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </button>
+
+                            <!-- Cart Quantity Indicator -->
+                            <?php 
+                            if (isset($_SESSION['cart'][$p['id']])): 
+                                $cart_quantity = $_SESSION['cart'][$p['id']]['quantity']; 
+                            ?>
+                                <span class="badge bg-secondary ms-2">In Cart: <?= $cart_quantity; ?></span>
+                            <?php endif; ?>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="quantity" class="form-label">Quantity</label>
-                <input type="number" name="quantity" id="quantity" class="form-control" min="1" required>
-            </div>
-            <button type="submit" name="add_to_cart" class="btn btn-primary">Add to Cart</button>
-        </form>
+            <?php endforeach; ?>
+        </div>
 
         <!-- View Cart / Checkout Button -->
         <div class="text-end mt-3">
-            <a href="cart.php" class="btn btn-success">View Cart / Checkout</a>
+            <a href="cart.php" class="btn btn-success">
+                <i class="bi bi-cart-check"></i> View Cart / Checkout
+            </a>
         </div>
     </div>
 

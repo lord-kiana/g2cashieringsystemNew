@@ -14,7 +14,7 @@
                 <h1 class="display-4 fw-bold text-center text-danger">Register <i class="fa-solid fa-user-plus"></i></h1>
             </div>
             <div class="card-body">
-                <form action="../actions/user-actions.php" method="post" class="w-75 mx-auto">
+                <form action="./user-actions.php" method="post" class="w-75 mx-auto">
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="first-name" class="form-label">First Name</label>

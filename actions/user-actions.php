@@ -39,7 +39,7 @@ if (isset($_POST['register'])) {
     // Attempt to register the user
     if ($user->register($first_name, $last_name, $username, $password)) {
         // Redirect to login page if registration is successful
-        header("Location: ../views/index.php");
+        header("Location: ../index.php");
         exit;
     } else {
         // If registration fails, show the error

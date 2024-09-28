@@ -15,7 +15,7 @@
                 <h1 class="display-4 fw-bold text-center text-primary">LOGIN <i class="fa-solid fa-right-to-bracket"></i></h1>
             </div>
             <div class="card-body">
-                <form action="../actions/user-actions.php" method="post" class="w-75 mx-auto">
+                <form action="./actions/user-actions.php" method="post" class="w-75 mx-auto">
                     <div class="row mb-3 g-2">
                         <label for="username" class="col-md-3 col-form-label text-md-end text-secondary small">Username</label>
                         <div class="col-md-8">
@@ -50,7 +50,7 @@
                             <div class="modal-body p-5">
                                 <h1 class="display-4 fw-bold text-danger text-center"><i class="fa-solid fa-user-plus"></i> Registration</h1>
 
-                                <form action="../actions/user-actions.php" method="post" class="w-75 mx-auto pt-4 p-5">
+                                <form action="./actions/user-actions.php" method="post" class="w-75 mx-auto pt-4 p-5">
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <label for="first-name" class="form-label small text-secondary">First Name</label>
