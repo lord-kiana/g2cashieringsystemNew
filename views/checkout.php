@@ -25,20 +25,25 @@ if (isset($_POST['process_payment'])) {
         require_once "../classes/Product.php";
         $product = new Product();
 
+        // Store the purchased items in the session
+        $_SESSION['purchased_items'] = $_SESSION['cart'];
+        $_SESSION['payment'] = $payment;
+        $_SESSION['change'] = $change;
+        $_SESSION['total'] = $total;
+
         foreach ($_SESSION['cart'] as $product_id => $cart_item) {
             $product->buyProduct($product_id, $cart_item['quantity']); // Deduct stock
         }
 
         // Clear cart after checkout
         $_SESSION['cart'] = [];
-        echo "<h3>Payment Successful!</h3>";
-        echo "<p>Change: " . number_format($change, 2) . "</p>";
-        echo "<a href='dashboard.php' class='btn btn-primary'>Back to Dashboard</a>";
+        header('Location: receipt.php');
         exit;
     } else {
         echo "<p class='text-danger'>Insufficient payment. Please enter at least " . number_format($total, 2) . "</p>";
     }
 }
+
 ?>
 
 <!DOCTYPE html>

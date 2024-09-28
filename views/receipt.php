@@ -24,17 +24,24 @@ $payment = $_SESSION['payment'];
 $change = $_SESSION['change'];
 $total = $_SESSION['total'];
 
-// Insert the sales data into the database
-$sales->insertSalesData($purchased_items, $payment, $change, $total);
+// Make sure the $purchased_items array is populated
+if (empty($purchased_items)) {
+    echo "No purchased items available.";
+    exit;
+}
 
-// Get the sales reports
-$daily_sales_report = $sales->getDailySalesReport();
-$monthly_sales_report = $sales->getMonthlySalesReport();
-$yearly_sales_report = $sales->getYearlySalesReport();
-$product_sales_report = $sales->getProductSalesReport();
+$daily_sales_report = $sales->getDailySalesReport($_SESSION['user_id']);
+
+// Insert the sales data into the database
+try {
+    $sales->insertOrderData($_SESSION['user_id'], $purchased_items, $payment, $change, $total);
+} catch (Exception $e) {
+    echo "Error inserting sales data: " . $e->getMessage();
+}
 
 // Clear payment information from the session after generating the receipt
 unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $_SESSION['total']);
+
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +63,7 @@ unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $
         .print-button { text-align: center; }
         .print-button button { padding: 10px 20px; font-size: 16px; }
     </style>
+
 
         <!-- Button Group: Back to Dashboard -->
         <div class="mb-3 text-start">
@@ -80,19 +88,18 @@ unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $
             Date/Time: <?= $date ?>
         </div>
 
-        <!-- Line Items (Purchased Products) -->
         <div class="line-items">
             <table>
                 <thead>
                     <tr>
-                        <th>Item</th>
+                        <th>Product</th>
                         <th>Qty</th>
                         <th>Price</th>
                         <th>Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($purchased_items as $item): ?>
+                    <?php foreach ($purchased_items as $product_id => $item): ?>
                         <tr>
                             <td><?= htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?= $item['quantity']; ?></td>

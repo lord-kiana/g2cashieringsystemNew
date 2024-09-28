@@ -57,16 +57,16 @@ $products = $product->displayProducts();
                 <?php if (!empty($products)): ?>
                     <?php foreach ($products as $p): ?>
                         <tr>
-                            <td><?= htmlspecialchars($p['id'], ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?= htmlspecialchars($p['product_id'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?= htmlspecialchars($p['product_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?= number_format($p['price'], 2); ?></td>
                             <td><?= $p['quantity']; ?></td>
                             <td>
                                 <!-- Edit Button -->
-                                <a href="edit-product.php?id=<?= $p['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="edit-product.php?id=<?= $p['product_id']; ?>" class="btn btn-warning btn-sm">Edit</a>
 
                                 <!-- Delete Button -->
-                                <a href="../actions/delete-product.php?id=<?= $p['id']; ?>" class="btn btn-danger btn-sm"
+                                <a href="../actions/delete-product.php?id=<?= $p['product_id']; ?>" class="btn btn-danger btn-sm"
                                    onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
                             </td>
                         </tr>

@@ -23,6 +23,11 @@ if (!$product_details) {
 </head>
 <body>
     <div class="container mt-5">
+
+    <div class="mb-3 text-start">
+            <a href="manage-inventory.php" class="btn btn-secondary">Back</a>
+        </div>
+        
         <h1>Edit Product</h1>
         <form action="../actions/product-actions.php?id=<?= $product_id ?>" method="post">
             <div class="mb-3">

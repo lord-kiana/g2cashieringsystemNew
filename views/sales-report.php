@@ -1,13 +1,37 @@
 <?php
 session_start();
+
+// Check if the user is logged in and is an admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // If the user is not an admin, show an alert and then redirect
+    echo "<script>alert('Access denied: Please use an admin account!');</script>";
+    echo "<script>window.location.href = 'dashboard.php';</script>"; // Redirect to dashboard
+    exit; // Stop further execution of the script
+}
+
 require_once '../classes/sales.php';
 
 $sales = new Sales();
 
-$daily_sales_report = $sales->getDailySalesReport();
-$monthly_sales_report = $sales->getMonthlySalesReport();
-$yearly_sales_report = $sales->getYearlySalesReport();
-$product_sales_report = $sales->getProductSalesReport();
+try {
+    $daily_sales_report = $sales->getDailySalesReport($_SESSION['user_id']);
+    $monthly_sales_report = $sales->getMonthlySalesReport($_SESSION['user_id']);
+    $yearly_sales_report = $sales->getYearlySalesReport($_SESSION['user_id']);
+    $product_sales_report = $sales->getProductSalesReport($_SESSION['user_id']);
+} catch (Exception $e) {
+    // Log the error message
+    error_log("Error retrieving sales reports: " . $e->getMessage());
+    
+    // Display a user-friendly error message
+    echo "Error retrieving sales reports. Please try again later.";
+}
+
+if (!empty($daily_sales_report)) {
+    // Display the daily sales report
+} else {
+    echo "No daily sales report available.";
+}
+
 
 ?>
 
@@ -56,25 +80,29 @@ $product_sales_report = $sales->getProductSalesReport();
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Daily Sales Report</h2>
+            <h2>Daily Sales Report</h2>
                 <table>
                     <tr>
-                        <th>Product ID</th>
-                        <th>Sale Date</th>
-                        <th>Sale Amount</th>
+                        <th>Order ID</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Order Date</th>
                     </tr>
                     <?php foreach ($daily_sales_report as $report): ?>
                         <tr>
-                            <td><?= $report['product_id']; ?></td>
-                            <td><?= $report['sale_date']; ?></td>
-                            <td><?= number_format($report['sale_amount'], 2); ?></td>
+                            <td><?= $report['order_id']; ?></td>
+                            <td><?= $report['product_name']; ?></td>
+                            <td><?= $report['quantity']; ?></td>
+                            <td><?= number_format($report['price'], 2); ?></td>
+                            <td><?= date('M d, Y', strtotime($report['order_date'])); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
             </div>
         </div>
 
-        <div class="row mt-5">
+                <div class=" row mt-5">
             <div class="col-md-6">
                 <h2>Monthly Sales Report</h2>
                 <table>
@@ -84,8 +112,8 @@ $product_sales_report = $sales->getProductSalesReport();
                     </tr>
                     <?php foreach ($monthly_sales_report as $report): ?>
                         <tr>
-                            <td><?= $report['month']; ?></td>
-                            <td><?= $report['total_sales']; ?></td>
+                            <td><?= date('M', mktime(0, 0, 0, $report['month'], 1)); ?></td>
+                            <td><?= number_format($report['total_sales'], 2); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
@@ -100,7 +128,7 @@ $product_sales_report = $sales->getProductSalesReport();
                     <?php foreach ($yearly_sales_report as $report): ?>
                         <tr>
                             <td><?= $report['year']; ?></td>
-                            <td><?= $report['total_sales']; ?></td>
+                            <td><?= number_format($report['total_sales'], 2); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
@@ -118,13 +146,12 @@ $product_sales_report = $sales->getProductSalesReport();
                     <?php foreach ($product_sales_report as $report): ?>
                         <tr>
                             <td><?= $report['product_name']; ?></td>
-                            <td><?= $report['total_sales']; ?></td>
+                            <td><?= number_format($report['total_sales'], 2); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
             </div>
         </div>
-    </div>
 
 </body>
 </html>

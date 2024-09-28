@@ -13,7 +13,7 @@
     <div class="container mt-5">
 
     <div class="mb-3 text-start">
-            <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
+            <a href="manage-inventory.php" class="btn btn-secondary">Back</a>
         </div>
 
         <h1 class="display-4">Add New Product</h1>
