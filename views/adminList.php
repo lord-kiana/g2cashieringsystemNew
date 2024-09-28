@@ -37,6 +37,15 @@ if (isset($_GET['message'])) {
 <div class="container mt-5">
     <h1 class="text-center">Admin User List</h1>
 
+    <div class="row">
+            <div class="col-md-12">
+                <!-- Button Group: Back to Dashboard -->
+                <div class="mb-3 text-start">
+                    <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>   
+
     <!-- Message Display -->
     <?php if ($message): ?>
         <div class="alert alert-success"><?= $message; ?></div>

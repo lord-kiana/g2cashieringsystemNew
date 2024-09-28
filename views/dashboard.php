@@ -79,7 +79,7 @@ if (isset($_POST['add_to_cart'])) {
                             </button>
                             <?php 
                             if (isset($_SESSION['cart'][$p['product_id']])): 
-                                $cart_quantity = $_SESSION['cart'][$p['id']]['quantity']; 
+                                $cart_quantity = $_SESSION['cart'][$p['product_id']]['quantity']; 
                             ?>
                                 <span class="badge bg-secondary ms-2">In Cart: <?= $cart_quantity; ?></span>
                             <?php endif; ?>
