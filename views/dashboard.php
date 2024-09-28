@@ -76,7 +76,7 @@ if (isset($_POST['add_to_cart'])) {
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title"><?= $p['product_name']; ?></h5>
-                        <p class="card-text">Price: $<?= $p['price']; ?></p>
+                        <p class="card-text">Price: Php <?= $p['price']; ?></p>
                         <p class="card-text">Stock: <?= $p['quantity']; ?></p>
                     </div>
                     <div class="card-footer text-end">

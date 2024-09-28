@@ -63,7 +63,6 @@ if (isset($_GET['message'])) {
         <table class="table table-striped mt-4">
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">ID</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Username</th>
@@ -75,7 +74,6 @@ if (isset($_GET['message'])) {
                 <?php if (!empty($users)): ?>
                     <?php foreach ($users as $user): ?>
                     <tr>
-                        <th scope="row"><?= $user['id']; ?></th>
                         <td><?= $user['first_name']; ?></td>
                         <td><?= $user['last_name']; ?></td>
                         <td><?= $user['username']; ?></td>
@@ -118,12 +116,16 @@ if (isset($_GET['message'])) {
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a href="../actions/delete-product.php?id=<?= $p['product_id']; ?>" class="btn btn-danger primary"
+                                        onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
+
+
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>

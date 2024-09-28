@@ -92,7 +92,7 @@ unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $
             <table>
                 <thead>
                     <tr>
-                        <th>Product</th>
+                        <th>Items</th>
                         <th>Qty</th>
                         <th>Price</th>
                         <th>Subtotal</th>
