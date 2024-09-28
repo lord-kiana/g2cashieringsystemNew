@@ -51,27 +51,91 @@ if (isset($_POST['add_to_cart'])) {
     <title>Cashiering Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        /* Sidebar styling for left-side placement */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            height: 100%;
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            padding-top: 20px;
+            transition: left 0.3s ease;
+        }
+
+        /* When sidebar is shown */
+        .sidebar.show {
+            left: 0;
+        }
+
+        .navbar-dark .navbar-toggler {
+            position: relative;
+            z-index: 1050; /* Ensure the button stays above the collapse */
+        }
+
+        .navbar-nav {
+            flex-direction: column;
+            padding-left: 0;
+            padding-top: 20px;
+        }
+
+        .nav-link {
+            color: #fff;
+            padding: 10px;
+        }
+
+        .nav-link:hover {
+            background-color: #444;
+        }
+
+        /* Positioning Logout button at the bottom */
+        .mt-auto {
+            margin-top: auto;
+        }
+
+        /* Ensuring the main container stays in place */
+        .container {
+            margin-top: 50px;
+            margin-left: 500px;
+            transition: margin-left 0.3s ease;
+        }
+
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Navbar at the top that toggles the sidebar -->
+    <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">AB Meat Shop</a>
-            <div class="ms-auto">
-                <a href="../actions/logout.php" class="btn btn-danger">Logout</a>
-            </div>
+            <button class="navbar-toggler" type="button" onclick="toggleSidebar()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <h1 class="display-4 text-center">Cashiering Dashboard</h1>
+    <!-- Sidebar that opens on the left -->
+    <div class="sidebar" id="sidebar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="manage-inventory.php">
+                    <i class="bi bi-gear-fill"></i> Manage Inventory
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mt-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="../actions/logout.php">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </div>
 
-        <!-- Manage Inventory Button -->
-        <div class="text-end mb-3">
-            <a href="manage-inventory.php" class="btn btn-success">
-                <i class="bi bi-gear-fill"></i> Manage Inventory
-            </a>
-        </div>
+    <!-- Main Dashboard Content -->
+    <div class="container" id="main-container">
+        <h1 class="display-4 text-center">Cashiering Dashboard</h1>
 
         <!-- Select Products and Add to Cart -->
         <h2>Select Products</h2>
@@ -92,10 +156,8 @@ if (isset($_POST['add_to_cart'])) {
                             </button>
 
                             <!-- Cart Quantity Indicator -->
-                            <?php 
-                            if (isset($_SESSION['cart'][$p['id']])): 
-                                $cart_quantity = $_SESSION['cart'][$p['id']]['quantity']; 
-                            ?>
+                            <?php if (isset($_SESSION['cart'][$p['id']])): 
+                                $cart_quantity = $_SESSION['cart'][$p['id']]['quantity']; ?>
                                 <span class="badge bg-secondary ms-2">In Cart: <?= $cart_quantity; ?></span>
                             <?php endif; ?>
                         </form>
@@ -112,6 +174,17 @@ if (isset($_POST['add_to_cart'])) {
             </a>
         </div>
     </div>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var mainContainer = document.getElementById('main-container');
+
+            // Toggle the sidebar visibility
+            sidebar.classList.toggle('show');
+            mainContainer.classList.toggle('shifted');
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
