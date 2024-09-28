@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once '../classes/sales.php';
+
+// Create an instance of the sales class
+$sales = new Sales();
 
 // Ensure the session contains the required payment information
 if (!isset($_SESSION['payment']) || !isset($_SESSION['change']) || !isset($_SESSION['total']) || !isset($_SESSION['purchased_items'])) {
@@ -19,6 +23,15 @@ $purchased_items = $_SESSION['purchased_items'];
 $payment = $_SESSION['payment'];
 $change = $_SESSION['change'];
 $total = $_SESSION['total'];
+
+// Insert the sales data into the database
+$sales->insertSalesData($purchased_items, $payment, $change, $total);
+
+// Get the sales reports
+$daily_sales_report = $sales->getDailySalesReport();
+$monthly_sales_report = $sales->getMonthlySalesReport();
+$yearly_sales_report = $sales->getYearlySalesReport();
+$product_sales_report = $sales->getProductSalesReport();
 
 // Clear payment information from the session after generating the receipt
 unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $_SESSION['total']);

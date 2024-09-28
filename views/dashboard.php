@@ -97,6 +97,14 @@ if (isset($_POST['add_to_cart'])) {
         <a href="manage-inventory.php" class="btn btn-success">
                 <i class="bi bi-gear-fill"></i> Manage Inventory
             </a>
+
+            <!-- Add a button to access the sales report -->
+        <div class="d-grid gap-2">
+        <a href="sales-report.php" class="btn btn-info">
+            <i class="bi bi-file-text"></i> Sales Report
+        </a>
+        </div>
+
             <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
             <a href="../actions/logout.php" class="btn btn-danger">Logout</a>
         </div>
