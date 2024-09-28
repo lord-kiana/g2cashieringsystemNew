@@ -49,21 +49,63 @@ if (isset($_POST['add_to_cart'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cashiering Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the brand name */
+        .navbar-brand {
+            font-size: 2rem; /* Makes the brand name larger */
+            color: #f8f9fa !important; /* Light color (using Bootstrap's light color) */
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">AB Meat Shop</a>
-            <div class="ms-auto">
-                <a href="../actions/logout.php" class="btn btn-danger">Logout</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Menu Icon for Logout -->
+                    <li class="nav-item">
+                     <!-- Menu Icon for Logout -->
+<li class="nav-item">
+    <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLogout" aria-controls="offcanvasLogout">
+        <i class="bi bi-list"></i> 
+    </button>
+</li>
+
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5">
+<!-- Offcanvas Logout Menu -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLogout" aria-labelledby="offcanvasLogoutLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLogoutLabel">Options</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p>Are you sure you want to logout?</p>
+        <div class="d-grid gap-2">
+        <a href="manage-inventory.php" class="btn btn-success">
+                <i class="bi bi-gear-fill"></i> Manage Inventory
+            </a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+            <a href="../actions/logout.php" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Add margin-top to avoid content overlap with fixed navbar -->
+    <div class="container mt-5 pt-5">
         <h1 class="display-4 text-center">Cashiering Dashboard</h1>
 
         <!-- Manage Inventory Button -->
@@ -113,6 +155,6 @@ if (isset($_POST['add_to_cart'])) {
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
