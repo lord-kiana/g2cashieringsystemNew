@@ -4,9 +4,28 @@ session_start(); // Start the session to use session variables
 
 $user = new User();
 
+// Check if the registration form is submitted
+if (isset($_POST['register'])) {
+    $first_name = trim($_POST['first_name']);
+    $last_name = trim($_POST['last_name']);
+    $username = trim($_POST['username']);
+    $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);  // Hash the password
+
+    // Attempt to register the user
+    if ($user->register($first_name, $last_name, $username, $password)) {
+        // Successful registration, redirect to login page
+        header("Location: ../index.php");
+        exit;
+    } else {
+        // Show error if registration fails
+        echo "Registration failed: " . $user->getError();
+    }
+}
+
+// Check if the login form is submitted
 if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
     // Attempt to log in the user
     if ($user->login($username, $password)) {
@@ -26,26 +45,10 @@ if (isset($_POST['login'])) {
         header("Location: ../views/dashboard.php");
         exit;
     } else {
+        // Show error if login fails
         echo "Login failed: " . $user->getError();
     }
 }
 
-if (isset($_POST['register'])) {
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);  // Hash the password before storing it
 
-    // Attempt to register the user
-    if ($user->register($first_name, $last_name, $username, $password)) {
-        // Redirect to login page if registration is successful
-        header("Location: ../index.php");
-        exit;
-    } else {
-        // If registration fails, show the error
-        echo "Registration failed: " . $user->getError();
-    }
-} else {
-    echo "Registration form not submitted.<br>";
-}
 ?>

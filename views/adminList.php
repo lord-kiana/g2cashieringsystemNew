@@ -36,13 +36,25 @@ if (isset($_GET['message'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin User List</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/adminList.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            padding-top: 60px; /* adjust this value to match the height of your navigation bar */
+              body {
+            background-color: #343a40; /* Dark background */
+            color: white; /* Light text color */
+            height: 120vh; /* Full viewport height */
+            display: flex; /* Flexbox for centering */
+            align-items: center; /* Vertically center */
+            justify-content: center; /* Horizontally center */
+            margin: 0; /* Remove default margin */
+        }
+        h1 {
+            color: white; /* Dark color for h1 text */
+        }
+        .card {
+            background-color: #495057; /* Darker card background */
         }
     </style>
 </head>
@@ -50,19 +62,25 @@ if (isset($_GET['message'])) {
 
 <?php include 'navbar.php'; ?> <!-- Include the navbar -->
 
-<div class="container mt-5 pt-5">
-<h1 class="display-4 text-center">Admin User List</h1>
-
+<div class="container mt-5">
+    
+   
+    <div class="col-md-12">
+                <h1 class="display-3 text-center"> Admin User List</h1>
+            </div>
     <!-- Message Display -->
     <?php if ($message): ?>
         <div class="alert alert-success"><?= $message; ?></div>
     <?php endif; ?>
+
+
 
     <!-- User Table in a Scrollable Container -->
     <div style="overflow-x: auto;">
         <table class="table table-striped mt-4">
             <thead class="table-dark">
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Username</th>
@@ -74,6 +92,7 @@ if (isset($_GET['message'])) {
                 <?php if (!empty($users)): ?>
                     <?php foreach ($users as $user): ?>
                     <tr>
+                        <th scope="row"><?= $user['id']; ?></th>
                         <td><?= $user['first_name']; ?></td>
                         <td><?= $user['last_name']; ?></td>
                         <td><?= $user['username']; ?></td>
@@ -124,8 +143,6 @@ if (isset($_GET['message'])) {
                             </div>
                         </div>
                     </div>
-
-
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>

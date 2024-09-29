@@ -21,7 +21,8 @@ if (isset($_POST['process_payment'])) {
     $payment = $_POST['payment'];
     $change = $payment - $total;
 
-    if ($change >= 0) {
+    // Allow payment even if change is less than 1 unit (including 0 change)
+    if ($payment >= $total) {
         // Only now update stock and clear the cart after successful checkout
         foreach ($_SESSION['cart'] as $product_id => $cart_item) {
             $product_details = $product->displaySpecificProduct($product_id);
@@ -33,7 +34,7 @@ if (isset($_POST['process_payment'])) {
         // Save the cart items, payment, total, and change to session for receipt
         $_SESSION['purchased_items'] = $_SESSION['cart'];
         $_SESSION['payment'] = $payment;
-        $_SESSION['change'] = $change;
+        $_SESSION['change'] = $change > 0 ? $change : 0; // Ensure change is non-negative
         $_SESSION['total'] = $total;
 
         // Clear the cart after successful checkout
@@ -47,11 +48,18 @@ if (isset($_POST['process_payment'])) {
     }
 }
 
+
 // Handle deleting a product from the cart
 if (isset($_GET['delete'])) {
     $product_id = $_GET['delete'];
     unset($_SESSION['cart'][$product_id]); // Remove from cart
 }
+
+// Handle deleting all products from the cart
+if (isset($_GET['delete_all'])) {
+    $_SESSION['cart'] = []; // Clear the cart
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -61,15 +69,97 @@ if (isset($_GET['delete'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        .card {
+            margin-top: 40px;
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        .form-control {
+            border: 2px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .btn-sec, .btn-success {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: grey;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="display-4 text-center">Checkout</h1>
 
-        <!-- Cart Items -->
-        <h2>Cart Items</h2>
-        <table class="table table-striped">
-            <thead>
+    <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="h2">Checkout</h1>
+                </div>
+                <div class="card-body">
+
+        <!-- Cart Container -->
+        <h2 class="h4 text-primary">Cart Items</h2>
+        <table class="table">
+
+            <!-- Delete All Button -->
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAllModal">
+                Delete All
+            </button>
+
+            <!-- Delete All Modal -->
+            <div class="modal fade" id="deleteAllModal" tabindex="-1" aria-labelledby="deleteAllModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteAllModalLabel">Delete All Items</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete all items from the cart?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <a href="cart.php?delete_all=true" class="btn btn-danger">Delete All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+
+        <!-- Cart Container -->
+        <thead>
                 <tr>
                     <th>Product Name</th>
                     <th>Price</th>
@@ -98,20 +188,20 @@ if (isset($_GET['delete'])) {
             </tbody>
         </table>
 
-        <!-- Payment Form -->
-        <form action="cart.php" method="post">
-            <div class="mb-3">
-                <label for="payment" class="form-label">Enter Payment</label>
-                <input type="number" name="payment" id="payment" class="form-control" min="<?= $total; ?>" required>
-            </div>
-            <button type="submit" name="process_payment" class="btn btn-success">Process Payment</button>
-        </form>
-
-        <div class="mt-3">
-            <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
+    <!-- Payment Form -->
+    <form action="cart.php" method="post">
+        <div class="mb-3">
+            <label for="payment" class="form-label">Enter Payment</label>
+            <input type="number" name="payment" id="payment" class="form-control" min="<?= number_format($total, 2, '.', ''); ?>" step="0.01" required>
         </div>
+        <button type="submit" name="process_payment" class="btn btn-success">Process Payment</button>
+    </form>
+
+    <div class="mt-3">
+        <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

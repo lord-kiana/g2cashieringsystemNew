@@ -38,8 +38,8 @@ if (isset($_POST['add_to_cart'])) {
         }
     } else {
         // Display an error message if requested quantity exceeds stock
-        echo "<p class='text-danger'>Not enough stock available for this product.</p>";
-    }
+        $error = true;
+    } 
 }
 ?>
 
@@ -63,14 +63,27 @@ if (isset($_POST['add_to_cart'])) {
 
     <?php include 'navbar.php'; ?> <!-- Include the navbar -->
 
+    <?php if (isset($error)): ?>
+        <div class="alert alert-warning" role="alert">
+            Not enough stock available for this product.
+        </div>
+    <?php endif; ?>
+
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="display-3 text-center">Dashboard</h1>
             </div>
 
-        <h2>Select Products</h2>
+        <h2 id="products">Select Products</h2>
         <div class="row">
+            
+                <div class="text-end mt-3">
+                    <a href="cart.php" class="btn btn-success">
+                        <i class="bi bi-cart-check"></i> View Cart
+                    </a>
+                </div>
+
             <?php foreach ($products as $p): ?>
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
@@ -96,12 +109,6 @@ if (isset($_POST['add_to_cart'])) {
                 </div>
             </div>
             <?php endforeach; ?>
-        </div>
-
-        <div class="text-end mt-3">
-            <a href="cart.php" class="btn btn-success">
-                <i class="bi bi-cart-check"></i> View Cart / Checkout
-            </a>
         </div>
     </div>
 
