@@ -17,7 +17,7 @@
                 <form action="../actions/user-actions.php" method="post" class="w-75 mx-auto">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="first-name" class="form-label">Fsirst Name</label>
+                            <label for="first-name" class="form-label">First Name</label>
                             <input type="text" name="first_name" id="first-name" class="form-control" required>
                         </div>
                         <div class="col-md-6">
