@@ -188,18 +188,18 @@ if (isset($_GET['delete_all'])) {
             </tbody>
         </table>
 
-    <!-- Payment Form -->
-    <form action="cart.php" method="post">
-        <div class="mb-3">
-            <label for="payment" class="form-label">Enter Payment</label>
-            <input type="number" name="payment" id="payment" class="form-control" min="<?= number_format($total, 2, '.', ''); ?>" step="0.01" required>
-        </div>
-        <button type="submit" name="process_payment" class="btn btn-success">Process Payment</button>
-    </form>
+                <!-- Payment Form -->
+                <form action="cart.php" method="post">
+                    <div class="mb-3">
+                        <label for="payment" class="form-label text-secondary">Enter Payment</label>
+                        <input type="number" name="payment" id="payment" class="form-control" min="<?= $total; ?>" required>
+                    </div>
+                    <button type="submit" name="process_payment" class="btn btn-primary w-100">Process Payment</button>
+                </form>
 
-    <div class="mt-3">
-        <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
-    </div>
+                <div class="mt-3 text-center">
+                    <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
+                </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 

@@ -75,7 +75,6 @@ if (isset($_POST['add_to_cart'])) {
                 <h1 class="display-3 text-center">Dashboard</h1>
             </div>
 
-        <h2 id="products">Select Products</h2>
         <div class="row">
             
                 <div class="text-end mt-3">

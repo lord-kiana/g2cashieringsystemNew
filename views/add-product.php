@@ -12,23 +12,28 @@
 
     <style>
         body {
-            background-color: #343a40; /* Dark background */
-            color: white; /* Light text color */
+            background-color: #f8f9fa; /* Light background */
+            color: #343a40; /* Dark text color */
             height: 100vh; /* Full viewport height */
             display: flex; /* Flexbox for centering */
             align-items: center; /* Vertically center */
             justify-content: center; /* Horizontally center */
             margin: 0; /* Remove default margin */
         }
+
         .card {
-            background-color: rgba(73, 80, 87, 0.8); /* Semi-transparent dark background */
-            border: 1px solid #343a40; /* Dark border color */
+            background-color: #ffffff; /* White background */
+            border: 1px solid #dee2e6; /* Light border color */
             width: 400px; /* Set a fixed width for the card */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
         }
+
         .card-header {
-            background-color: #495057; /* Darker header background */
+            background-color: #343a40; /* Dark header background */
+            color: #ffffff; /* White text color */
         }
     </style>
+    
 </head>
 <body>
 <?php include 'navbar.php'; ?> <!-- Include the navbar -->
