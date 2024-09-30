@@ -9,6 +9,14 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit; // Stop further execution of the script
 }
 
+// Check if the user is logged in and is an admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // If the user is not an admin, show an alert and then redirect
+    echo "<script>alert('Access denied: Please use an admin account!');</script>";
+    echo "<script>window.location.href = 'dashboard.php';</script>"; // Redirect to dashboard
+    exit; // Stop further execution of the script
+}
+
 
 // Start session and require login
 require_once('../actions/require_login.php');
@@ -26,7 +34,7 @@ $users = $user->getAllUsers(); // Make sure this method is implemented in your U
 
 // Check for messages in the URL
 if (isset($_GET['message'])) {
-    $message = htmlspecialchars($_GET['message']);
+    $message = htmlspecialchars(string: $_GET['message']);
 }
 ?>
 
@@ -56,6 +64,10 @@ if (isset($_GET['message'])) {
         .card {
             background-color: #495057; /* Darker card background */
         }
+        .user-list-container {
+            max-height: 500px; /* Set a maximum height for the container */
+            overflow-y: auto; /* Add a vertical scrollbar when the content exceeds the maximum height */
+        }
     </style>
 </head>
 <body>
@@ -76,7 +88,7 @@ if (isset($_GET['message'])) {
 
 
     <!-- User Table in a Scrollable Container -->
-    <div style="overflow-x: auto;">
+    <div class="user-list-container">
         <table class="table table-striped mt-4">
             <thead class="table-dark">
                 <tr>

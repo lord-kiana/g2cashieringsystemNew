@@ -22,7 +22,7 @@ if (isset($_POST['process_payment'])) {
     $change = $payment - $total;
 
     // Allow payment even if change is less than 1 unit (including 0 change)
-    if ($payment >= $total) {
+    if ($payment >= $total - 0.01) { // Allow for a small margin of error
         // Only now update stock and clear the cart after successful checkout
         foreach ($_SESSION['cart'] as $product_id => $cart_item) {
             $product_details = $product->displaySpecificProduct($product_id);
@@ -34,7 +34,7 @@ if (isset($_POST['process_payment'])) {
         // Save the cart items, payment, total, and change to session for receipt
         $_SESSION['purchased_items'] = $_SESSION['cart'];
         $_SESSION['payment'] = $payment;
-        $_SESSION['change'] = $change > 0 ? $change : 0; // Ensure change is non-negative
+        $_SESSION['change'] = $change;
         $_SESSION['total'] = $total;
 
         // Clear the cart after successful checkout
@@ -192,7 +192,7 @@ if (isset($_GET['delete_all'])) {
                 <form action="cart.php" method="post">
                     <div class="mb-3">
                         <label for="payment" class="form-label text-secondary">Enter Payment</label>
-                        <input type="number" name="payment" id="payment" class="form-control" min="<?= $total; ?>" required>
+                        <input type="number" name="payment" id="payment" class="form-control" required>
                     </div>
                     <button type="submit" name="process_payment" class="btn btn-primary w-100">Process Payment</button>
                 </form>
