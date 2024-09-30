@@ -33,7 +33,6 @@ $products = $product->displayProducts();
             color: #343a40; /* Dark text color */
             height: 100vh; /* Full viewport height */
             display: flex; /* Flexbox for centering */
-            align-items: center; /* Vertically center */
             justify-content: center; /* Horizontally center */
             margin: 0; /* Remove default margin */
             padding-top: 60px; /* adjust this value to match the height of your navigation bar */
@@ -44,11 +43,25 @@ $products = $product->displayProducts();
             border: 1px solid #dee2e6; /* Light border color */
             width: 800px; /* Set a fixed width for the card */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            border-radius: 10px; /* Add a rounded corner */
         }
 
         .card-header {
             background-color: #343a40; /* Dark header background */
             color: #ffffff; /* White text color */
+            border-radius: 10px 10px 0 0; /* Add a rounded corner */
+        }
+
+        .container {
+            margin-top: 20px; /* Add some space between the top of the page and the content */
+        }
+
+        .table {
+            margin-top: 20px; /* Add some space between the table and the top of the card */
+        }
+
+        .btn {
+            border-radius: 10px; /* Add a rounded corner */
         }
     </style>
 </head>
@@ -102,7 +115,7 @@ $products = $product->displayProducts();
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="5" class="text-center">No products available</td>
+                                    <td colspan="5" class="text -center">No products available</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>

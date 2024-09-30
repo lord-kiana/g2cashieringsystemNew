@@ -39,7 +39,7 @@ if (!empty($daily_sales_report)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AB Meat Shop Sales Report</title>
+    <title>AB's Meat Shop Sales Report</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -69,13 +69,13 @@ if (!empty($daily_sales_report)) {
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="display-4 text-center">AB Meat Shop</h1>
+                <h1 class="display-4 text-center">AB's Meat Shop</h1>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-            <h2>Daily Sales Report</h2>
+            <h2>Daily Report</h2>
                 <table>
                     <tr>
                         <th>Order ID</th>
