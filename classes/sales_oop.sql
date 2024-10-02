@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
 -- Generation Time: Sep 30, 2024 at 03:41 AM
-=======
--- Generation Time: Sep 30, 2024 at 04:02 AM
->>>>>>> g2repo/main
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,11 +66,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `price`, `quantity`) VALUES
-<<<<<<< HEAD
-(1, 'Beef Meat', 180.00, 12),
-=======
 (1, 'Beef Meat', 180.00, 0),
->>>>>>> g2repo/main
 (2, 'Ground Beef', 599.00, 36),
 (3, 'Chicken Breast', 149.00, 25),
 (4, 'Pork Chops', 125.00, 26),
