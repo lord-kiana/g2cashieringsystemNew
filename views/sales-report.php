@@ -80,7 +80,6 @@ if (!empty($daily_sales_report)) {
                     <tr>
                         <th>Order ID</th>
                         <th>Product Name</th>
-                        <th>Quantity</th>
                         <th>Price</th>
                         <th>Order Date</th>
                     </tr>
@@ -88,7 +87,6 @@ if (!empty($daily_sales_report)) {
                         <tr>
                             <td><?= $report['order_id']; ?></td>
                             <td><?= $report['product_name']; ?></td>
-                            <td><?= $report['quantity']; ?></td>
                             <td><?= number_format($report['price'], 2); ?></td>
                             <td><?= date('M d, Y', strtotime($report['order_date'])); ?></td>
                         </tr>

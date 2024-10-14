@@ -21,30 +21,27 @@ if (isset($_POST['add_to_cart'])) {
     // Set the quantity to 1 by default when adding a product
     $quantity = 1;
 
-    // Fetch product details
+    // Fetch product details (without worrying about stock)
     $product_details = $product->displaySpecificProduct($product_id);
-    
-    // Check if the requested quantity exceeds available stock
-    $current_cart_quantity = isset($_SESSION['cart'][$product_id]) ? $_SESSION['cart'][$product_id]['quantity'] : 0;
-    $total_requested_quantity = $current_cart_quantity + $quantity;
 
-    if ($product_details && $total_requested_quantity <= $product_details['quantity']) {
+    if ($product_details) {
         // Add to cart with the default quantity of 1
         if (!isset($_SESSION['cart'][$product_id])) {
             $_SESSION['cart'][$product_id] = [
                 'name' => $product_details['product_name'], 
                 'price' => $product_details['price'], 
-                'quantity' => $quantity
+                'quantity' => $quantity  // Start with quantity 1
             ];
         } else {
             // Update quantity if the product is already in the cart
             $_SESSION['cart'][$product_id]['quantity'] += $quantity;
         }
     } else {
-        // Display an error message if requested quantity exceeds stock
+        // Handle error if product details are not found
         $error = true;
     } 
 }
+
 
 // Calculate total price
 foreach ($_SESSION['cart'] as $item) {
@@ -135,7 +132,6 @@ if (isset($_GET['delete_all'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <h1 class="display-3 text-center">Welcome to AB's Meat Shop!</h1>
-    <h5 class="text-center">Please choose items.</h5>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -173,7 +169,6 @@ if (isset($_GET['delete_all'])) {
                                 <div class="card-body">
                                     <h5 class="card-title"><?= htmlspecialchars($p['product_name']); ?></h5>
                                     <p class="card-text">Price: Php <?= number_format($p['price'], 2); ?></p>
-                                    <p class="card-text">Stock: <?= intval($p['quantity']); ?></p>
                                 </div>
                                 <div class="card-footer text-end">
                                     <form action="cashier_dashboard.php" method="post">
@@ -256,7 +251,6 @@ if (isset($_GET['delete_all'])) {
         </div>
     </div>
 
-<!-- Receipt Modal -->
 <!-- Receipt Modal -->
 <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -37,28 +37,47 @@ if (isset($_GET['message'])) {
     <title>Admin User List</title>
     <link rel="stylesheet" href="../css/adminList.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-              body {
-            background-color: #343a40; /* Dark background */
-            color: white; /* Light text color */
-            height: 120vh; /* Full viewport height */
+/* Body Styles */
+        body {
+            background-color: #FCFAEE; /* Off-white background */
+            color: #343a40; /* Dark text color */
+            height: 100vh; /* Full viewport height */
             display: flex; /* Flexbox for centering */
-            align-items: center; /* Vertically center */
             justify-content: center; /* Horizontally center */
             margin: 0; /* Remove default margin */
+            padding-top: 60px; /* Adjust this value to match the height of your navigation bar */
         }
+
+        /* Heading (h1) */
         h1 {
-            color: white; /* Dark color for h1 text */
+            color: #DA8359; /* Warm Orange for headings */
+            font-size: 2.5rem; /* Adjust font size */
+            text-align: center; /* Center align the heading */
+            margin-bottom: 20px; /* Space below the heading */
         }
+
+        /* Card Styles */
         .card {
-            background-color: #495057; /* Darker card background */
+            background-color: #ECDFCC; /* Soft Beige background */
+            border: 1px solid #A5B68D; /* Muted Green border */
+            width: 800px; /* Set a fixed width for the card */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            border-radius: 10px; /* Add a rounded corner */
+            padding: 20px; /* Padding inside the card */
         }
+
+        /* User List Container (assuming class is 'user-list-container') */
         .user-list-container {
-            max-height: 500px; /* Set a maximum height for the container */
-            overflow-y: auto; /* Add a vertical scrollbar when the content exceeds the maximum height */
+            background-color: #ECDFCC; /* Soft Beige background */
+            border: 1px solid #A5B68D; /* Muted Green border */
+            padding: 15px; /* Add padding inside */
+            border-radius: 8px; /* Add rounded corners */
+            margin-top: 20px; /* Space between other elements and the container */
         }
+
     </style>
 </head>
 <body>
@@ -66,7 +85,7 @@ if (isset($_GET['message'])) {
 <?php include 'navbar.php'; ?> <!-- Include the navbar -->
 
 <div class="container mt-5">
-    
+
    
     <div class="col-md-12">
                 <h1 class="display-3 text-center"> Admin User List</h1>

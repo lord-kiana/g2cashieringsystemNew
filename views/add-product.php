@@ -52,10 +52,6 @@
             <label for="price" class="form-label">Price</label>
             <input type="number" name="price" id="price" class="form-control" step="0.01" required>
         </div>
-        <div class="mb-3">
-            <label for="quantity" class="form-label">Quantity</label>
-            <input type="number" name="quantity" id="quantity" class="form-control" required>
-        </div>
         <div class="d-flex justify-content-between">
             <button type="submit" name="add_product" class="btn btn-success">Add Product</button>
             <a href="manage-inventory.php" class="btn btn-danger">

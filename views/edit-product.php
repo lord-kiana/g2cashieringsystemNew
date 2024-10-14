@@ -68,11 +68,6 @@ $success_message = isset($_GET['success']) ? htmlspecialchars($_GET['success'], 
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
                 <input type="number" name="price" id="price" class="form-control" value="<?= htmlspecialchars($product_details['price'], ENT_QUOTES, 'UTF-8') ?>" step="0.01" required>
-            
-            <div class="mb-3">
-                <label for="quantity" class="form-label">Quantity</label>
-                <input type="number" name="quantity" id="quantity" class="form-control" value="<?= htmlspecialchars($product_details['quantity'], ENT_QUOTES, 'UTF-8') ?>" required>
-            </div>
             <div class="d-flex justify-content-between">
                     <button type="submit" name="edit_product" class="btn btn-success">Update Product</button>
                     <a href="manage-inventory.php" class="btn btn-danger">

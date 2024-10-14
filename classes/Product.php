@@ -8,12 +8,12 @@ class Product extends Database {
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    // Method to add a new product
-    public function addProduct($product_name, $price, $quantity) {
-        // SQL to insert a new product
-        $sql = "INSERT INTO products (product_name, price, quantity) VALUES (?, ?, ?)";
+    // Method to add a new product (without quantity)
+    public function addProduct($product_name, $price) {
+        // SQL to insert a new product (without quantity)
+        $sql = "INSERT INTO products (product_name, price) VALUES (?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sdi", $product_name, $price, $quantity);  // s = string, d = double, i = integer
+        $stmt->bind_param("sd", $product_name, $price);  // s = string, d = double
 
         // Execute the query
         if ($stmt->execute()) {
@@ -23,10 +23,11 @@ class Product extends Database {
         }
     }
 
-    public function editProduct($product_id, $product_name, $price, $quantity) {
-        $sql = "UPDATE products SET product_name = ?, price = ?, quantity = ? WHERE product_id = ?";
+    // Method to edit a product (without quantity)
+    public function editProduct($product_id, $product_name, $price) {
+        $sql = "UPDATE products SET product_name = ?, price = ? WHERE product_id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sdii", $product_name, $price, $quantity, $product_id); // Bind the parameters
+        $stmt->bind_param("sdi", $product_name, $price, $product_id); // Bind the parameters
             
         if ($stmt->execute()) {
             return true; // Return true if update succeeds
@@ -35,36 +36,14 @@ class Product extends Database {
         }
     }
     
-    public function buyProduct($product_id, $buy_quantity) {
-        // Fetch product details
-        $product = $this->displaySpecificProduct($product_id);
-        
-        // Check if the product is null (not found)
-        if ($product === null) {
-            die("Product not found. Cannot proceed with the purchase.");  // Handle the null case
-        }
-        
-        // Now check if the quantity is sufficient
-        if ($product['quantity'] >= $buy_quantity) {
-            // Calculate new quantity
-            $new_quantity = $product['quantity'] - $buy_quantity;
-        
-            // Update product quantity in the database
-            $sql = "UPDATE products SET quantity = ? WHERE product_id = ?";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("ii", $new_quantity, $product_id);
-        
-            if ($stmt->execute()) {
-                return true;  // Purchase successful
-            } else {
-                return false;  // Failed to update the database
-            }
-        } else {
-            // If there is not enough stock
-            die("Not enough stock available.");
-        }
+    // Method to handle product purchases (without checking for stock/quantity)
+    public function buyProduct($product_id) {
+        // Logic for buying a product without quantity constraints
+        // You can add any other necessary logic here based on your business rules
+        return true;  // Purchase successful (or implement other logic if needed)
     }
     
+    // Method to display specific product details
     public function displaySpecificProduct($product_id) {
         // Prepare SQL query
         $sql = "SELECT * FROM products WHERE product_id = ?";

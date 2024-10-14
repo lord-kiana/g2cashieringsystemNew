@@ -1,127 +1,49 @@
+/* Table Styles */
 .table {
     border: 2px solid white; /* White border around the table */
     border-radius: 8px; /* Rounded corners */
     overflow: hidden; /* Hide overflow for rounded corners */
-    background-color: #ffffff;
+    background-color: #ffffff; /* White background for table */
 }
 
-.table th, .table td {
+/* Table Header */
+.table th {
+    background-color: #343a40; /* Dark background for table header */
+    color: #ffffff; /* White text for header */
+    border: 1px solid white; /* White borders for the header */
+    text-align: center;
+}
+
+/* Soften the row colors for better contrast */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2 !important; /* Very light grey for odd rows */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #e0e7ed !important; /* Light greyish blue for even rows */
+}
+
+/* Table Cell Styling */
+.table td {
     border: 1px solid white; /* White borders for table cells */
     padding: 12px; /* Increased padding for better spacing */
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(255, 255, 255, 0.1); /* Light background for odd rows */
+/* Hover effect for table rows */
+.table-hover tbody tr:hover {
+    background-color: #DA8359; /* Warm orange on hover */
+    color: #ffffff; /* White text on hover */
 }
 
-.table-striped tbody tr:nth-of-type(even) {
-    background-color: #8aa5bf; /* Light background for odd rows */
-}
-.table-dark {
-    background-color: #495057; /* Darker background for header */
-    color: white; /* White text for header */
-}
-
-.table th {
-    background-color: #343a40; /* Dark background for table header */
-    color: #ffffff; /* White text for header */
-}
-
-.table-responsive {
-    margin-top: 20px; /* Space above the table */
-}
-
-.navbar-brand {
-    font-size: 2rem;
-    color: #f8f9fa !important;
-}
-
-.table-responsive {
-    overflow-x: auto; /* Enable horizontal scrolling */
-    margin-top: 20px; /* Space above the table */
-}
-
-.card {
-    background-color: #495057; /* Darker card background */
-    border: 2px solid white; /* White border */
-}
-
-
-/* Custom styles for the offcanvas sidebar */
-.offcanvas {
-    background-color: #343a40; /* Dark background for sidebar */
-    color: #ffffff; /* Light text color */
-    padding: 20px; /* Add some padding */
-}
-
-.offcanvas-header {
-    border-bottom: 1px solid #495057; /* Add a border at the bottom of the header */
-}
-
-.offcanvas-title {
-    font-size: 1.5rem; /* Larger font for the title */
-}
-
-.offcanvas-body p {
-    font-size: 1.1rem; /* Slightly larger font for body text */
-    margin-bottom: 20px; /* Space below paragraph */
-}
-
-/* Modify button styles */
+/* Button Styling for Consistency */
 .btn {
-    margin-bottom: 10px; /* Space between buttons */
-    border-radius: 4px; /* Rounded corners for buttons */
+    background-color: #DA8359 !important; /* Warm Orange button color */
+    color: #ffffff !important; /* White text */
+    border-radius: 10px; /* Rounded corners */
+    border: none;
 }
 
-/* Specific styles for each button type */
-.btn-success {
-    background-color: #28a745; /* Custom green color */
-}
-
-.btn-danger {
-    background-color: #dc3545; /* Custom red color */
-}
-
-.btn-secondary {
-    background-color: #6c757d; /* Custom gray color */
-}
-
-.btn-warning {
-    background-color: #ffc107; /* Custom warning color */
-    color: #000; /* Black text for contrast */
-}
-
-.btn-warning:hover {
-    background-color: #e0a800; /* Darker warning on hover */
-}
-
-/* Add hover effects for buttons */
 .btn:hover {
-    opacity: 0.8; /* Slightly transparent on hover */
-}
-
-.btn-success:hover {
-    background-color: #218838; /* Darker green on hover */
-}
-
-.btn-danger:hover {
-    background-color: #c82333; /* Darker red on hover */
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268; /* Darker gray on hover */
-}
-
-/* Navbar styles */
-.navbar {
-    background-color: #343a40; /* Dark background for navbar */
-}
-
-.navbar .navbar-brand,
-.navbar .nav-link {
-    color: #ffffff; /* White text color */
-}
-
-.navbar .nav-link:hover {
-    color: #ffc107; /* Yellow color on hover */
+    background-color: #A5B68D !important; /* Muted green on hover */
+    color: #ffffff !important; /* White text on hover */
 }

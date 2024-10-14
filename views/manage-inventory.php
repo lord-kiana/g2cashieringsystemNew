@@ -29,7 +29,7 @@ $products = $product->displayProducts();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa; /* Light background */
+            background-color: #FCFAEE; /* Light background */
             color: #343a40; /* Dark text color */
             height: 100vh; /* Full viewport height */
             display: flex; /* Flexbox for centering */
@@ -69,15 +69,12 @@ $products = $product->displayProducts();
 
 <?php include 'navbar.php'; ?> <!-- Include the navbar -->
 
-<div class="container mt-5 pt-5" style="overflow-y: auto; max-height: 80vh;">
+<div class="container mt-5" style="overflow-y: auto; max-height;">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
 
-            <div class="card">
-                <div class="card-header">
-                    <h1 class="display-4 text-center">Inventory</h1>
+                <h1 class="display-3 text-center">Inventory</h1>
                 </div>
-                <div class="card-body">
 
                     <!-- Add Product Button -->
                     <div class="text-end mb-3">
@@ -91,7 +88,6 @@ $products = $product->displayProducts();
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Name</th>
                                 <th class="text-center">Price</th>
-                                <th class="text-center">Quantity</th>
                                 <th class="text-center">Actions</th> <!-- Edit and Delete options -->
                             </tr>
                         </thead>
@@ -102,7 +98,6 @@ $products = $product->displayProducts();
                                         <td class="text-center"><?= htmlspecialchars($p['product_id'], ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td class="text-center"><?= htmlspecialchars($p['product_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td class="text-center"><?= number_format($p['price'], 2); ?></td>
-                                        <td class="text-center"><?= $p['quantity']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit Button -->
                                             <a href="edit-product.php?id=<?= $p['product_id']; ?>" class="btn btn-warning btn-sm">Edit</a>

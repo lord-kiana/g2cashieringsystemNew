@@ -3,6 +3,7 @@ require_once "Database.php";
 
 class Sales extends Database {
 
+    // Insert order data (without quantity)
     public function insertOrderData($user_id, $purchased_items, $payment, $change, $total) {
         try {
             // Get the current date
@@ -18,12 +19,12 @@ class Sales extends Database {
             // Get the order id of the newly inserted order
             $order_id = $stmt->insert_id;
         
-            // Insert the order items into the database
-            $sql = "INSERT INTO order_items (order_id, product_id, quantity, price)
-                    VALUES (?, ?, ?, ?)";
+            // Insert the order items into the database (without quantity)
+            $sql = "INSERT INTO order_items (order_id, product_id, price)
+                    VALUES (?, ?, ?)";
             $stmt = $this->conn->prepare($sql);
             foreach ($purchased_items as $product_id => $item) {
-                $stmt->bind_param("iiid", $order_id, $product_id, $item['quantity'], $item['price']);
+                $stmt->bind_param("iid", $order_id, $product_id, $item['price']);
                 $stmt->execute();
             }
         } catch (Exception $e) {
@@ -35,13 +36,14 @@ class Sales extends Database {
         }
     }
 
+    // Get daily sales report (without quantity)
     public function getDailySalesReport($user_id) {
         try {
             // Get the current date
             $current_date = date('Y-m-d');
             
             // Get the daily sales report
-            $sql = "SELECT o.order_id, p.product_name, oi.quantity, oi.price, o.order_date
+            $sql = "SELECT o.order_id, p.product_name, oi.price, o.order_date
                     FROM orders o
                     JOIN order_items oi ON o.order_id = oi.order_id
                     JOIN products p ON oi.product_id = p.product_id
@@ -63,10 +65,11 @@ class Sales extends Database {
         }
     }
     
+    // Get monthly sales report (without quantity)
     public function getMonthlySalesReport($user_id) {
         try {
             // Get the monthly sales report
-            $sql = "SELECT MONTH(o.order_date) AS month, SUM(oi.quantity * oi.price) AS total_sales
+            $sql = "SELECT MONTH(o.order_date) AS month, SUM(oi.price) AS total_sales
                     FROM orders o
                     JOIN order_items oi ON o.order_id = oi.order_id
                     WHERE o.user_id = ?
@@ -84,10 +87,11 @@ class Sales extends Database {
         }
     }
     
+    // Get yearly sales report (without quantity)
     public function getYearlySalesReport($user_id) {
         try {
             // Get the yearly sales report
-            $sql = "SELECT YEAR(o.order_date) AS year, SUM(oi.quantity * oi.price) AS total_sales
+            $sql = "SELECT YEAR(o.order_date) AS year, SUM(oi.price) AS total_sales
                     FROM orders o
                     JOIN order_items oi ON o.order_id = oi.order_id
                     WHERE o.user_id = ?
@@ -105,10 +109,11 @@ class Sales extends Database {
         }
     }
     
+    // Get product sales report (without quantity)
     public function getProductSalesReport($user_id) {
         try {
             // Get the product sales report
-            $sql = "SELECT p.product_name, SUM(oi.quantity * oi.price) AS total_sales
+            $sql = "SELECT p.product_name, SUM(oi.price) AS total_sales
                     FROM orders o
                     JOIN order_items oi ON o.order_id = oi.order_id
                     JOIN products p ON oi.product_id = p.product_id

@@ -1,6 +1,5 @@
 # group2cashieringsystem
-
-VINCE - gi change nako ang name sa isa ka primary key sa table which is product_id from id only. make sure nga machange na nimo imong mga code diha. thankies.
+need to remove inventory stock.
 
 
 workinggggg
