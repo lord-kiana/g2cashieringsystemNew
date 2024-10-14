@@ -5,18 +5,9 @@ session_start();
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     // If the user is not an admin, show an alert and then redirect
     echo "<script>alert('Access denied: Please use an admin account!');</script>";
-    echo "<script>window.location.href = 'dashboard.php';</script>"; // Redirect to dashboard
+    echo "<script>window.location.href = 'cashier_dashboard.php';</script>"; // Redirect to dashboard
     exit; // Stop further execution of the script
 }
-
-// Check if the user is logged in and is an admin
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    // If the user is not an admin, show an alert and then redirect
-    echo "<script>alert('Access denied: Please use an admin account!');</script>";
-    echo "<script>window.location.href = 'dashboard.php';</script>"; // Redirect to dashboard
-    exit; // Stop further execution of the script
-}
-
 
 // Start session and require login
 require_once('../actions/require_login.php');

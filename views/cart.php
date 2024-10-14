@@ -2,12 +2,6 @@
 require_once('../actions/require_login.php');
 require_once "../classes/Product.php";
 
-// Ensure the cart exists
-if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    echo "No items in the cart.";
-    exit;
-}
-
 $product = new Product();
 $total = 0;
 
@@ -198,7 +192,7 @@ if (isset($_GET['delete_all'])) {
                 </form>
 
                 <div class="mt-3 text-center">
-                    <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
+                    <a href="cashier_dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
                 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

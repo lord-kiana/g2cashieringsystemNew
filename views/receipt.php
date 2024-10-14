@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../classes/sales.php';
+require_once '../classes/Sales.php';
 
 // Create an instance of the sales class
 $sales = new Sales();
@@ -24,16 +24,14 @@ $payment = $_SESSION['payment'];
 $change = $_SESSION['change'];
 $total = $_SESSION['total'];
 
-// Make sure the $purchased_items array is populated
+// Ensure the $purchased_items array is populated
 if (empty($purchased_items)) {
     echo "No purchased items available.";
     exit;
 }
 
-$daily_sales_report = $sales->getDailySalesReport($_SESSION['user_id']);
-
-// Insert the sales data into the database
 try {
+    // Insert the sales data into the database
     $sales->insertOrderData($_SESSION['user_id'], $purchased_items, $payment, $change, $total);
 } catch (Exception $e) {
     echo "Error inserting sales data: " . $e->getMessage();
@@ -41,7 +39,6 @@ try {
 
 // Clear payment information from the session after generating the receipt
 unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $_SESSION['total']);
-
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +49,6 @@ unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $
     <title>Receipt</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Receipt styles */
         body { font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px; }
         .receipt { max-width: 400px; margin: auto; padding: 20px; background-color: white; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
         .receipt h1 { text-align: center; font-size: 24px; margin-bottom: 20px; }
@@ -63,29 +59,24 @@ unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $
         .print-button { text-align: center; }
         .print-button button { padding: 10px 20px; font-size: 16px; }
     </style>
-
-
-        <!-- Button Group: Back to Dashboard -->
-        <div class="mb-3 text-start">
-            <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
-        </div>
-
-        </div>
-
 </head>
 <body>
 
+    <div class="mb-3 text-start">
+        <a href="cashier_dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+
     <div class="receipt">
-        <h1><?= $store_name ?></h1>
+        <h1><?= htmlspecialchars($store_name); ?></h1>
 
         <div class="store-details">
-            <p><?= $store_address ?></p>
-            <p>Phone: <?= $store_phone ?></p>
+            <p><?= htmlspecialchars($store_address); ?></p>
+            <p>Phone: <?= htmlspecialchars($store_phone); ?></p>
         </div>
 
         <div class="timestamp">
-            Receipt #: <?= $receipt_number ?><br>
-            Date/Time: <?= $date ?>
+            Receipt #: <?= htmlspecialchars($receipt_number); ?><br>
+            Date/Time: <?= htmlspecialchars($date); ?>
         </div>
 
         <div class="line-items">
@@ -99,10 +90,10 @@ unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($purchased_items as $product_id => $item): ?>
+                    <?php foreach ($purchased_items as $item): ?>
                         <tr>
                             <td><?= htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?= $item['quantity']; ?></td>
+                            <td><?= intval($item['quantity']); ?></td>
                             <td><?= number_format($item['price'], 2); ?></td>
                             <td><?= number_format($item['price'] * $item['quantity'], 2); ?></td>
                         </tr>
@@ -111,7 +102,6 @@ unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $
             </table>
         </div>
 
-        <!-- Total, Payment, Change -->
         <div class="total">
             Total: <?= number_format($total, 2); ?>
         </div>
@@ -123,8 +113,10 @@ unset($_SESSION['purchased_items'], $_SESSION['payment'], $_SESSION['change'], $
         </div>
 
         <div class="print-button">
-            <button onclick="window.print()">Print Receipt</button>
+            <button onclick="window.print()" class="btn btn-primary">Print Receipt</button>
         </div>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

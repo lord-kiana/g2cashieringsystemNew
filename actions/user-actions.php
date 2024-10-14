@@ -41,9 +41,17 @@ if (isset($_POST['login'])) {
             echo "Failed to retrieve user details.";
         }
 
-        // Redirect to dashboard after successful login
-        header("Location: ../views/dashboard.php");
-        exit;
+        // Role-based redirection after login
+        if ($_SESSION['role'] === 'admin') {
+            header("Location: ../views/admin_dashboard.php"); // Redirect admin to admin dashboard
+        } elseif ($_SESSION['role'] === 'cashier') {
+            header("Location: ../views/cashier_dashboard.php"); // Redirect cashier to cashier dashboard
+        } else {
+            // If role is undefined or unexpected, redirect to a default page
+            echo "Invalid role, please contact support.";
+        }
+
+        exit; // Ensure no further code is executed after redirect
     } else {
         // Show error if login fails
         echo "Login failed: " . $user->getError();

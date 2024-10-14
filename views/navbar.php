@@ -29,10 +29,13 @@
     <div class="offcanvas-body flex-grow-1">
         <div class="d-grid gap-2">
             
-        <a href="dashboard.php" class="btn btn-secondary">
+        <a href="cashier_dashboard.php" class="btn btn-secondary">
     <i class="bi bi-grid"></i> Back to Dashboard
 </a>
 
+            <a href="cashier_dashboard.php" class="btn btn-success">
+                <i class="bi bi-calculator"></i> Cashier Dashboard
+            </a>
             <a href="adminList.php" class="btn btn-success">
                 <i class="bi bi-person"></i> Edit Users
             </a>

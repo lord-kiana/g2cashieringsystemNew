@@ -1,170 +1,147 @@
-.navbar-brand {
-    font-size: 2rem;
-    color: #f8f9fa !important;
+/* Define the color palette */
+:root {
+    --primary-color: #A5B68D; /* Muted Green */
+    --secondary-color: #ECDFCC; /* Soft Beige */
+    --background-color: #FCFAEE; /* Off-white */
+    --accent-color: #DA8359; /* Warm Orange */
+    --text-color: #333333; /* Dark Text */
 }
 
-.table-responsive {
-    overflow-x: auto; /* Enable horizontal scrolling */
-    margin-top: 20px; /* Space above the table */
+/* Custom Container Styles */
+.container {
+    background-color: var(--background-color); /* Off-white background */
+    border: 2px solid var(--secondary-color); /* Beige border */
+    border-radius: 8px; /* Smooth corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px; /* Ensure padding inside the container */
+    width: 100%; /* Full width to ensure it doesn't shrink */
+    max-width: none; /* Remove Bootstrap's max-width constraints */
+    margin: 20px auto; /* Center the container */
 }
 
+/* Card Styles */
 .card {
-    background-color: #495057; /* Darker card background */
-    border: 2px solid white; /* White border */
+    background-color: var(--primary-color); /* Muted Green */
+    color: var(--background-color); /* Off-white text */
+    border: 2px solid var(--background-color); /* Off-white border */
+    border-radius: 8px; /* Smooth border */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-
-/* Custom styles for the offcanvas sidebar */
-.offcanvas {
-    background-color: #343a40; /* Dark background for sidebar */
-    color: #ffffff; /* Light text color */
-    padding: 20px; /* Add some padding */
-}
-
-.offcanvas-header {
-    border-bottom: 1px solid #495057; /* Add a border at the bottom of the header */
-}
-
-.offcanvas-title {
-    font-size: 1.5rem; /* Larger font for the title */
-}
-
-.offcanvas-body p {
-    font-size: 1.1rem; /* Slightly larger font for body text */
-    margin-bottom: 20px; /* Space below paragraph */
-}
-
-/* Modify button styles */
-.btn {
-    margin-bottom: 10px; /* Space between buttons */
-    border-radius: 4px; /* Rounded corners for buttons */
-}
-
-/* Specific styles for each button type */
-.btn-success {
-    background-color: #28a745; /* Custom green color */
+/* Button Styles */
+.btn-primary {
+    background-color: var(--primary-color) !important; /* Muted Green */
+    border-color: var(--secondary-color) !important; /* Soft Beige */
+    color: var(--background-color) !important; /* Off-white text */
 }
 
 .btn-danger {
-    background-color: #dc3545; /* Custom red color */
+    background-color: var(--accent-color) !important; /* Warm Orange */
+    border-color: var(--secondary-color) !important; /* Soft Beige */
+    color: var(--background-color) !important; /* Off-white text */
 }
 
 .btn-secondary {
-    background-color: #6c757d; /* Custom gray color */
+    background-color: var(--secondary-color) !important; /* Soft Beige */
+    border-color: var(--primary-color) !important; /* Muted Green */
+    color: var(--text-color) !important; /* Dark text for readability */
 }
 
-.btn-warning {
-    background-color: #ffc107; /* Custom warning color */
-    color: #000; /* Black text for contrast */
-}
-
-.btn-warning:hover {
-    background-color: #e0a800; /* Darker warning on hover */
-}
-
-/* Add hover effects for buttons */
+/* Button Hover Effects */
 .btn:hover {
-    opacity: 0.8; /* Slightly transparent on hover */
+    opacity: 0.9;
 }
 
-.btn-success:hover {
-    background-color: #218838; /* Darker green on hover */
+.btn-primary:hover {
+    background-color: var(--secondary-color) !important;
+    color: var(--primary-color) !important;
 }
 
 .btn-danger:hover {
-    background-color: #c82333; /* Darker red on hover */
+    background-color: #c82333 !important; /* Darker orange */
+    color: var(--background-color) !important;
 }
 
 .btn-secondary:hover {
-    background-color: #5a6268; /* Darker gray on hover */
+    background-color: var(--primary-color) !important;
+    color: var(--background-color) !important;
 }
 
-/* Navbar styles */
-.navbar {
-    background-color: #343a40; /* Dark background for navbar */
-}
-
-.navbar .navbar-brand,
-.navbar .nav-link {
-    color: #ffffff; /* White text color */
-}
-
-.navbar .nav-link:hover {
-    color: #ffc107; /* Yellow color on hover */
-}
-
-/* Container styles */
-.container {
-   
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 20px; /* Padding inside the container */
-}
-.container {
-    border: 2px solid white; /* White border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 20px; /* Padding inside the container */
-    margin-top: 150px; /* Space from the top */
-}
-
-/* Table styles */
-
-
+/* Table Styles */
 .table {
-    border-collapse: collapse; /* Collapse borders */
-    width: 100%; /* Full width */
-    border: 2px solid white; /* White border for the table */
+    background-color: var(--background-color); /* Off-white */
+    border: 2px solid var(--secondary-color); /* Soft Beige border */
+    color: var(--text-color); /* Dark text for readability */
 }
 
 .table th,
 .table td {
-    padding: 12px; /* Padding for cells */
-    text-align: left; /* Align text to the left */
-    border: 1px solid white; /* White border for table cells */
+    background-color: var(--secondary-color); /* Beige for cells */
+    border: 1px solid var(--primary-color); /* Green borders */
+    padding: 12px;
 }
 
-
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f2f2f2; /* Light gray for odd rows */
+    background-color: var(--secondary-color); /* Beige for odd rows */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: var(--background-color); /* Off-white for even rows */
 }
 
 .table-dark {
-    background-color: #343a40; /* Dark background for table header */
-    color: #ffffff; /* White text for header */
+    background-color: var(--primary-color); /* Muted Green */
+    color: var(--background-color); /* Off-white text */
 }
 
-/* Alert styles */
-.alert {
-    margin-bottom: 20px; /* Space below alerts */
-}
-
-/* Modal styles */
+/* Modal Styles */
 .modal-content {
-    border-radius: 8px; /* Rounded corners for modals */
+    background-color: var(--background-color); /* Off-white modal */
+    border-radius: 8px;
+    color: var(--text-color); /* Dark text for readability */
 }
 
 .modal-header {
-    border-bottom: 1px solid #dee2e6; /* Border below header */
+    background-color: var(--primary-color); /* Muted Green */
+    border-bottom: 1px solid var(--secondary-color); /* Beige border */
+}
+
+.modal-footer {
+    background-color: var(--primary-color); /* Muted Green */
 }
 
 /* Scrollable Table */
 .scrollable-table {
-    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-x: auto;
 }
 
-/* Responsive adjustments */
+/* General Text and Headers */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color); /* Muted Green */
+}
+
+p, label, span {
+    color: var(--text-color); /* Dark Text */
+}
+
+/* Add Hover Animation for Cards */
+.card:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .container {
         padding: 10px; /* Reduce padding on smaller screens */
     }
 
-    .table th,
-    .table td {
-        padding: 8px; /* Smaller padding for cells */
+    .btn {
+        font-size: 0.9rem;
     }
 
-    .btn {
-        font-size: 0.9rem; /* Smaller button text */
+    .table th,
+    .table td {
+        padding: 8px;
     }
 }
