@@ -4,6 +4,14 @@ require_once('../actions/require_login.php');
 require_once "../classes/Product.php";
 require_once "../classes/Sales.php";
 
+// Check if the user is logged in and is an admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // If the user is not an admin, show an alert and then redirect
+    echo "<script>alert('Access denied: Please use an admin account!');</script>";
+    echo "<script>window.location.href = 'cashier_dashboard.php';</script>"; // Redirect to dashboard
+    exit; // Stop further execution of the script
+}
+
 // Ensure the user is logged in as an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: ../views/admin_dashboard.php');
@@ -18,7 +26,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard.css">
-    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -40,7 +48,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Cashier</h5>
                     <p class="card-text flex-grow-1">Create transactions and print receipts</p>
-                    <a href="sales-report.php" class="btn btn-primary mt-auto">Cashier</a>
+                    <a href="cashier_dashboard.php" class="btn btn-primary mt-auto">Cashier</a>
                 </div>
             </div>
         </div>

@@ -1,18 +1,16 @@
+/* Card Styles */
 .card {
-    background-color: white; /* White background */
-    border: 2px solid #dee2e6; /* Light border for subtlety */
+    background-color: #495057; /* Darker card background */
+    border: 2px solid white; /* White border */
     color: #212529; /* Dark text color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
 
+/* Table Styles */
 .table {
     border-collapse: collapse; /* Collapse borders */
     width: 100%; /* Full width */
     border: 1px solid #dee2e6; /* Light border for table */
-}
-
-h1 {
-    color: white; /* Dark color for h1 text */
 }
 
 .table th,
@@ -27,17 +25,20 @@ h1 {
     background-color: #aaacad; /* Light gray for odd rows */
 }
 
+/* Dark Table Styles */
 .table-dark {
     background-color: #343a40; /* Dark background for header */
     color: #ffffff; /* White text */
 }
 
+/* Alert Styles */
 .alert {
     background-color: #f8f9fa; /* Light background for alerts */
     color: #212529; /* Dark text */
     border: 1px solid #dee2e6; /* Light border */
 }
 
+/* Container Styles */
 .container {
     border: none; /* Remove border for a cleaner look */
     background-color: #f8f9fa; /* Light background */
@@ -47,23 +48,20 @@ h1 {
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 2px 10px rgba(248, 246, 246, 0.2); /* Subtle shadow for depth */
 }
+
+/* Navbar Brand */
 .navbar-brand {
     font-size: 2rem;
-    color: #f8f9fa !important;
+    color: #f8f9fa !important; /* White text for brand */
 }
 
+/* Scrollable Table */
 .table-responsive {
     overflow-x: auto; /* Enable horizontal scrolling */
     margin-top: 20px; /* Space above the table */
 }
 
-.card {
-    background-color: #495057; /* Darker card background */
-    border: 2px solid white; /* White border */
-}
-
-
-/* Custom styles for the offcanvas sidebar */
+/* Offcanvas Sidebar */
 .offcanvas {
     background-color: #343a40; /* Dark background for sidebar */
     color: #ffffff; /* Light text color */
@@ -83,13 +81,13 @@ h1 {
     margin-bottom: 20px; /* Space below paragraph */
 }
 
-/* Modify button styles */
+/* Button Styles */
 .btn {
     margin-bottom: 10px; /* Space between buttons */
     border-radius: 4px; /* Rounded corners for buttons */
 }
 
-/* Specific styles for each button type */
+/* Specific Button Types */
 .btn-success {
     background-color: #28a745; /* Custom green color */
 }
@@ -107,13 +105,9 @@ h1 {
     color: #000; /* Black text for contrast */
 }
 
+/* Button Hover Effects */
 .btn-warning:hover {
     background-color: #e0a800; /* Darker warning on hover */
-}
-
-/* Add hover effects for buttons */
-.btn:hover {
-    opacity: 0.8; /* Slightly transparent on hover */
 }
 
 .btn-success:hover {
@@ -128,7 +122,12 @@ h1 {
     background-color: #5a6268; /* Darker gray on hover */
 }
 
-/* Navbar styles */
+/* General Button Hover Effect */
+.btn:hover {
+    opacity: 0.8; /* Slightly transparent on hover */
+}
+
+/* Navbar Styles */
 .navbar {
     background-color: #343a40; /* Dark background for navbar */
 }
@@ -140,4 +139,9 @@ h1 {
 
 .navbar .nav-link:hover {
     color: #ffc107; /* Yellow color on hover */
+}
+
+/* Headings */
+h1 {
+    color: white; /* White color for h1 text */
 }

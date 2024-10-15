@@ -1,10 +1,10 @@
 /* Define the color palette */
 :root {
-    --primary-color: #A5B68D; /* Muted Green */
-    --secondary-color: #ECDFCC; /* Soft Beige */
+    --primary-color: #557C56; /* Muted Green */
+    --secondary-color: #FFE5CF; /* Soft Beige */
     --background-color: #FCFAEE; /* Off-white */
-    --accent-color: #DA8359; /* Warm Orange */
-    --text-color: #333333; /* Dark Text */
+    --accent-color: #FF885B; /* Warm Orange */
+    --text-color: #33372C; /* Dark Olive Text */
 }
 
 /* Custom Container Styles */

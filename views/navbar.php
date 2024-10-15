@@ -29,8 +29,8 @@
     <div class="offcanvas-body flex-grow-1">
         <div class="d-grid gap-2">
             
-        <a href="cashier_dashboard.php" class="btn btn-secondary">
-    <i class="bi bi-grid"></i> Back to Dashboard
+        <a href="admin_dashboard.php" class="btn btn-secondary">
+    <i class="bi bi-grid"></i> Admin Dashboard
 </a>
 
             <a href="cashier_dashboard.php" class="btn btn-success">
