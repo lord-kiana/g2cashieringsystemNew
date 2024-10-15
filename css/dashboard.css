@@ -1,16 +1,3 @@
-/* Custom Container Styles */
-.container {
-    background-color: var(--background-color); /* Off-white background */
-    border: 2px solid var(--secondary-color); /* Beige border */
-    border-radius: 8px; /* Smooth corners */
-    padding: 20px; /* Ensure padding inside the container */
-    max-width: 100%; /* Remove Bootstrap's max-width constraints */
-    margin:  auto; /* Center the container */
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-}
-
 /* Card Styles */
 .card {
     background-color: var(--primary-color); /* Muted Green */
