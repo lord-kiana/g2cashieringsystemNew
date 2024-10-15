@@ -1,22 +1,14 @@
-/* Define the color palette */
-:root {
-    --primary-color: #557C56; /* Muted Green */
-    --secondary-color: #FFE5CF; /* Soft Beige */
-    --background-color: #FCFAEE; /* Off-white */
-    --accent-color: #FF885B; /* Warm Orange */
-    --text-color: #33372C; /* Dark Olive Text */
-}
-
 /* Custom Container Styles */
 .container {
     background-color: var(--background-color); /* Off-white background */
     border: 2px solid var(--secondary-color); /* Beige border */
     border-radius: 8px; /* Smooth corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     padding: 20px; /* Ensure padding inside the container */
-    width: 100%; /* Full width to ensure it doesn't shrink */
-    max-width: none; /* Remove Bootstrap's max-width constraints */
-    margin: 20px auto; /* Center the container */
+    max-width: 100%; /* Remove Bootstrap's max-width constraints */
+    margin:  auto; /* Center the container */
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
 }
 
 /* Card Styles */
@@ -25,14 +17,20 @@
     color: var(--background-color); /* Off-white text */
     border: 2px solid var(--background-color); /* Off-white border */
     border-radius: 8px; /* Smooth border */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 2px 8px rgba(229, 157, 157, 0.801); /* Subtle shadow */
+    
+}
+ 
+.card-title{
+    color: rgb(90, 35, 3);
 }
 
 /* Button Styles */
 .btn-primary {
     background-color: var(--primary-color) !important; /* Muted Green */
     border-color: var(--secondary-color) !important; /* Soft Beige */
-    color: var(--background-color) !important; /* Off-white text */
+    color: rgb(102, 87, 21) !important; /* Off-white text */
+    
 }
 
 .btn-danger {

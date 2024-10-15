@@ -193,7 +193,7 @@ if (isset($_GET['delete_all'])) {
 
                 <!-- Cart Column -->
                 <div class="col-md-4 cart-container">
-                    <h2 class="h4 text-primary">Cart Items</h2>
+                    <h2 class="h4 text-primary">Items</h2>
 
                     <!-- Display message if cart is empty -->
                     <?php if (empty($_SESSION['cart'])): ?>

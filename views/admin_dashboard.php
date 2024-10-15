@@ -28,6 +28,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../css/dashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -38,16 +39,14 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 <div class="container my-5 p-5 bg-white rounded shadow-lg">
     <h1 class="text-center mb-4">Admin Dashboard</h1>
 
-    <!-- Row for dashboard cards -->
-    <div class="row g-4">
-
-        
-        <!-- View Reports Card -->
+    <!-- First Row for dashboard cards -->
+    <div class="row g-4 justify-content-center">
+        <!-- Cashier Card -->
         <div class="col-md-4">
             <div class="card text-center shadow-sm h-100">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Cashier</h5>
-                    <p class="card-text flex-grow-1">Create transactions and print receipts</p>
+                    <p class="card-text flex-grow-1">Create Transactions and Print Receipts</p>
                     <a href="cashier_dashboard.php" class="btn btn-primary mt-auto">Cashier</a>
                 </div>
             </div>
@@ -58,18 +57,21 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             <div class="card text-center shadow-sm h-100">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Manage Users</h5>
-                    <p class="card-text flex-grow-1">Create, update, or delete users.</p>
+                    <p class="card-text flex-grow-1">Update Users</p>
                     <a href="adminList.php" class="btn btn-primary mt-auto">Manage Users</a>
                 </div>
             </div>
         </div>
+    </div> <!-- End First Row -->
 
+    <!-- Second Row for dashboard cards -->
+    <div class="row g-4 justify-content-center mt-4">
         <!-- Manage Products Card -->
         <div class="col-md-4">
             <div class="card text-center shadow-sm h-100">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Manage Products</h5>
-                    <p class="card-text flex-grow-1">Update product prices and availability.</p>
+                    <p class="card-text flex-grow-1">Update Product Prices</p>
                     <a href="manage-inventory.php" class="btn btn-primary mt-auto">Manage Products</a>
                 </div>
             </div>
@@ -80,15 +82,14 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             <div class="card text-center shadow-sm h-100">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">View Reports</h5>
-                    <p class="card-text flex-grow-1">Generate sales and payment reports.</p>
+                    <p class="card-text flex-grow-1">Generate Sales and Payment Reports</p>
                     <a href="sales-report.php" class="btn btn-primary mt-auto">View Reports</a>
                 </div>
             </div>
         </div>
-
-
-    </div> <!-- End Row -->
+    </div> <!-- End Second Row -->
 </div> <!-- End Container -->
+
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

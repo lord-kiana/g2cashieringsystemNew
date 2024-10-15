@@ -35,57 +35,15 @@ if (isset($_GET['message'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin User List</title>
-    <link rel="stylesheet" href="../css/inventory.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-/* Body Styles */
-        body {
-            background-color: #FCFAEE; /* Off-white background */
-            color: #343a40; /* Dark text color */
-            height: 100vh; /* Full viewport height */
-            display: flex; /* Flexbox for centering */
-            justify-content: center; /* Horizontally center */
-            margin: 0; /* Remove default margin */
-            padding-top: 60px; /* Adjust this value to match the height of your navigation bar */
-        }
-
-        /* Heading (h1) */
-        h1 {
-            color: #DA8359; /* Warm Orange for headings */
-            font-size: 2.5rem; /* Adjust font size */
-            text-align: center; /* Center align the heading */
-            margin-bottom: 20px; /* Space below the heading */
-        }
-
-        /* Card Styles */
-        .card {
-            background-color: #ECDFCC; /* Soft Beige background */
-            border: 1px solid #A5B68D; /* Muted Green border */
-            width: 800px; /* Set a fixed width for the card */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-            border-radius: 10px; /* Add a rounded corner */
-            padding: 20px; /* Padding inside the card */
-        }
-
-        /* User List Container (assuming class is 'user-list-container') */
-        .user-list-container {
-            background-color: #ECDFCC; /* Soft Beige background */
-            border: 1px solid #A5B68D; /* Muted Green border */
-            padding: 15px; /* Add padding inside */
-            border-radius: 8px; /* Add rounded corners */
-            margin-top: 20px; /* Space between other elements and the container */
-        }
-
-    </style>
 </head>
 <body>
 
 <?php include 'navbar.php'; ?> <!-- Include the navbar -->
 
 <div class="container mt-5">
-
    
     <div class="col-md-12">
                 <h1 class="display-3 text-center"> Admin User List</h1>
@@ -94,8 +52,6 @@ if (isset($_GET['message'])) {
     <?php if ($message): ?>
         <div class="alert alert-success"><?= $message; ?></div>
     <?php endif; ?>
-
-
 
     <!-- User Table in a Scrollable Container -->
     <div class="user-list-container">

@@ -11,6 +11,13 @@
     <button class="btn btn-light me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLogout" aria-controls="offcanvasLogout">
         <i class="bi bi-menu-button-wide"></i>
     </button>
+
+ <style> 
+    .btn-success{
+        text-align: left;    }
+
+
+ </style>
   
 </div>
 
@@ -23,7 +30,7 @@
 <!-- Offcanvas Logout Menu -->
 <div class="offcanvas offcanvas-end d-flex flex-column" tabindex="-1" id="offcanvasLogout" aria-labelledby="offcanvasLogoutLabel" style="height: 100%;">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasLogoutLabel"> Menu Options</h5>
+        <h4 class="offcanvas-title" id="offcanvasLogoutLabel"> Menu Options</h4>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body flex-grow-1">
@@ -31,7 +38,7 @@
             
         <a href="admin_dashboard.php" class="btn btn-secondary">
     <i class="bi bi-grid"></i> Admin Dashboard
-</a>
+</a> <br>
 
             <a href="cashier_dashboard.php" class="btn btn-success">
                 <i class="bi bi-calculator"></i> Cashier Dashboard
@@ -40,8 +47,10 @@
                 <i class="bi bi-person"></i> Edit Users
             </a>
             <a href="manage-inventory.php" class="btn btn-success">
-                <i class="bi bi-gear-fill"></i> Manage Inventory
+                <i class="bi bi-gear-fill"></i> Product List
+            
             </a>
+            <br>
             <a href="sales-report.php" class="btn btn-info">
                 <i class="bi bi-file-text"></i> Sales Report
             </a>

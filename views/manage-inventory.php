@@ -73,7 +73,7 @@ $products = $product->displayProducts();
     <div class="row justify-content-center">
         <div class="col-md-12">
 
-                <h1 class="display-3 text-center">Inventory</h1>
+                <h1 class="display-3 text-center">Product List</h1>
                 </div>
 
                     <!-- Add Product Button -->

@@ -6,6 +6,10 @@
     background-color: #FFE5CF; /* Light peach background for table */
 }
 
+.p{
+    background-color: aliceblue;
+}
+
 /* Table Header */
 .table th {
     background-color: #557C56; /* Dark green background for table header */
@@ -31,7 +35,7 @@
 
 /* Hover effect for table rows */
 .table-hover tbody tr:hover {
-    background-color: #33372C; /* Dark olive green on hover */
+    background-color: #d2dfbb; /* Dark olive green on hover */
     color: #ffffff; /* White text on hover */
 }
 
